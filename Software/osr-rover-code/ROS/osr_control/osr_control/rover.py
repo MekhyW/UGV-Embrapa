@@ -95,7 +95,7 @@ class Rover(Node):
         :param intuitive: determines the mode
         """
         # check if we're supposed to rotate in place
-        if twist_msg.angular.y and not twist_msg.linear.x:
+        if  not twist_msg.linear.x:
             # command corners to point to center
             corner_cmd_msg, drive_cmd_msg = self.calculate_rotate_in_place_cmd(twist_msg)
 
@@ -282,7 +282,7 @@ class Rover(Node):
         corner_cmd.right_front_pos = -corner_cmd.right_back_pos
 
         drive_cmd = CommandDrive()
-        angular_vel = twist.angular.y
+        angular_vel = twist.angular.z
         # velocity of each wheel center = angular velocity of center of rover * distance to wheel center
         front_wheel_vel = math.hypot(self.d1, self.d3) * angular_vel / self.wheel_radius
         drive_cmd.left_front_vel = front_wheel_vel
