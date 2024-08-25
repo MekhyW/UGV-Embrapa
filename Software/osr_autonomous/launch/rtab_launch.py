@@ -19,6 +19,9 @@ def generate_launch_description():
                 'depth_topic': '/camera/camera/depth/image_rect_raw',
                 'camera_info_topic': '/camera/camera/color/camera_info',
                 'imu_topic': '/imu/data',
+                #'subscribe_scan': 'true',
+                #'scan_topic': '/scan',
+                #'rgbd_sync': 'true',
             }.items()
         ),
     ])
