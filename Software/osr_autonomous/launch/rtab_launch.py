@@ -1,8 +1,10 @@
+import os
 from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import LaunchConfiguration
 from launch_ros.substitutions import FindPackageShare
+from launch_ros.actions import Node
+from ament_index_python import get_package_share_directory
 
 def generate_launch_description():
     # Path to the existing launch file
@@ -13,6 +15,9 @@ def generate_launch_description():
     realsense_launch_file = PythonLaunchDescriptionSource(
         [FindPackageShare('realsense2_camera'), '/launch/rs_launch.py']
     )
+
+    #Path to URDF
+    urdf_file = os.path.join(get_package_share_directory('osr_gazebo'), 'urdf', 'osr.urdf.xacro')
 
     # Include the existing launch file and override some arguments
     return LaunchDescription([
@@ -28,6 +33,14 @@ def generate_launch_description():
                 'unite_imu_method': '1',
                 'align_depth.enable': 'true',
             }.items()
+        ),
+        Node(
+            package='robot_state_publisher',
+            executable='robot_state_publisher',
+            name='robot_state_publisher',
+            output='screen',
+            parameters=[{'use_sim_time': False}],
+            arguments=[urdf_file],
         ),
         IncludeLaunchDescription(
             rtabmap_launch_file,
