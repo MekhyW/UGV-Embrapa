@@ -10,8 +10,25 @@ def generate_launch_description():
         [FindPackageShare('rtabmap_launch'), '/launch/rtabmap.launch.py']
     )
 
+    realsense_launch_file = PythonLaunchDescriptionSource(
+        [FindPackageShare('realsense2_camera'), '/launch/rs_launch.py']
+    )
+
     # Include the existing launch file and override some arguments
     return LaunchDescription([
+        IncludeLaunchDescription(
+            realsense_launch_file,
+            launch_arguments={
+                'enable_rgbd': 'true',
+                'enable_sync': 'true',
+                'enable_color': 'true',
+                'enable_depth': 'true',
+                'enable_gyro': 'true',
+                'enable_accel': 'true',
+                'unite_imu_method': '1',
+                'align_depth.enable': 'true',
+            }.items()
+        ),
         IncludeLaunchDescription(
             rtabmap_launch_file,
             launch_arguments={
