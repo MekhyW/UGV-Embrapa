@@ -13,6 +13,8 @@ COPY ./*.sh /scripts/
 # Make sure all shell scripts are executable
 RUN chmod +x /scripts/*.sh
 
+RUN sudo apt update -y && sudo apt upgrade -y
+
 # Install additional ROS packages using the desired script
 RUN /scripts/ros2_install.sh rtabmap_ros realsense2_camera https://github.com/MekhyW/UGV-Embrapa.git
 
