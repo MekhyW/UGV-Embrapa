@@ -3,6 +3,8 @@
 #
 FROM dustynv/ros:humble-ros-base-l4t-r36.2.0
 
+USER root
+
 ARG ROS_WORKSPACE=${ROS_ROOT}
     
 # Copy all .sh files into the container
