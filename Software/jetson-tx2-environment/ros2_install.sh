@@ -25,7 +25,7 @@ else
     cat ros2.${ROS_DISTRO}.rosinstall
     vcs import src/ < ros2.${ROS_DISTRO}.rosinstall
 
-    apt-get update
+    #apt-get update
 
     rosdep install -y \
         --ignore-src \
@@ -34,7 +34,7 @@ else
         --skip-keys "${ROSDEP_SKIP_KEYS}"
 
     rm -rf /var/lib/apt/lists/*
-    apt-get clean
+    #apt-get clean
 fi
 
 if [ "${ROS_WORKSPACE}" = "${ROS_ROOT}" ]; then
