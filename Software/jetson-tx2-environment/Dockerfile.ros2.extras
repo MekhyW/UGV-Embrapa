@@ -6,5 +6,6 @@ FROM dustynv/ros:humble-ros-base-l4t-r36.2.0
 ARG ROS_PACKAGES \
     ROS_WORKSPACE=${ROS_ROOT}
     
-RUN /ros2_install.sh rtabmap_ros realsense2_camera
+RUN /ros2_install.sh rtabmap_ros realsense2_camera https://github.com/MekhyW/UGV-Embrapa.git
+
 
