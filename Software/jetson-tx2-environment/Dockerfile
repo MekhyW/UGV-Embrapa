@@ -17,6 +17,6 @@ RUN chmod +x /scripts/*.sh
 #    && echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ jammy main' | tee /etc/apt/sources.list.d/kitware.list >/dev/null
 #
 # Install additional ROS packages using the desired script
-RUN /scripts/ros2_install.sh rtabmap_ros realsense2_camera https://github.com/MekhyW/UGV-Embrapa.git
+RUN /scripts/ros2_install.sh https://github.com/ros-navigation/navigation2/tree/main/nav2_mppi_controller.git rtabmap_ros realsense2_camera https://github.com/MekhyW/UGV-Embrapa.git
 
 
