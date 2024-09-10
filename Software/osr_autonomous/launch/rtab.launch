@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- Include the existing launch file -->
+  <include file="$(find realsense2_camera)/launch/rs_camera.launch">
+
+    <!-- Set arguments for rs_launch.py -->
+    <arg name="align_depth" default="true"/>
+
+  </include>
+
+  <!-- Include the existing launch file -->
+  <include file="$(find rtabmap_launch)/launch/rtabmap.launch">
+
+    <!-- Set arguments for rtabmap.launch.py -->
+    <arg name="rtabmap_args"       value="--delete_db_on_start"/>
+    <arg name="depth_topic"        value="/camera/aligned_depth_to_color/image_raw"/>
+    <arg name="frame_id"           value="camera_link"/>
+    <arg name="visual_odometry"    value="true"/>
+    <arg name="rgb_topic"          value="/camera/color/image_raw"/>
+    <arg name="camera_info_topic"  value="/camera/color/camera_info"/>
+    <arg name="queue_size"         value="200"/>
+    <arg name="rviz"               value="true"/>
+
+  </include>
+
+</launch>
