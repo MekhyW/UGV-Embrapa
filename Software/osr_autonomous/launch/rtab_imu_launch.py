@@ -33,6 +33,9 @@ def generate_launch_description():
                 'enable_color': 'true',
                 'enable_depth': 'true',
                 'align_depth.enable': 'true',
+                'enable_gyro': 'true',
+                'enable_accel': 'true',
+                'unite_imu_method': '1',
             }.items()
         ),
         Node(
@@ -48,6 +51,14 @@ def generate_launch_description():
             executable='static_transform_publisher',
             name='tf_camera_link',
             arguments=["0", "0", "0", "0", "0", "0", 'base_link', 'camera_link'],
+        ),
+        Node(
+            package='imu_filter_madgwick',
+            executable='imu_filter_madgwick_node',
+            name='imu_filter',
+            output='screen',
+            parameters=[{'publish_tf': False, 'use_mag': False}],
+            remappings=[('/imu/data_raw', '/camera/camera/imu')],
         ),
         IncludeLaunchDescription(
             rtabmap_launch_file,
