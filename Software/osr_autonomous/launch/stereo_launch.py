@@ -20,6 +20,8 @@ def generate_launch_description():
         [FindPackageShare('nav2_bringup'), '/launch/bringup_launch.py']
     )
 
+    realsense_params_file = os.path.join(get_package_share_directory('osr_autonomous'), 'realsense_params', 'params.yaml')
+
     #Path to URDF
     urdf_file = os.path.join(get_package_share_directory('osr_gazebo'), 'urdf', 'osr.urdf.xacro')
 
@@ -28,14 +30,12 @@ def generate_launch_description():
         IncludeLaunchDescription(
             realsense_launch_file,
             launch_arguments={
-                #'enable_rgbd': 'true',
+                'config_file': realsense_params_file,
                 'enable_sync': 'true',
-                'enable_color': 'true',
+                'enable_color': 'false',
                 'enable_depth': 'true',
-                'align_depth.enable': 'true',
-                'enable_gyro': 'true',
-                'enable_accel': 'true',
-                'unite_imu_method': '1',
+                'enable_infra1': 'true',
+                #'enable_infra2': 'true',
             }.items()
         ),
         Node(
@@ -52,34 +52,27 @@ def generate_launch_description():
             name='tf_camera_link',
             arguments=["0", "0", "0", "0", "0", "0", 'base_link', 'camera_link'],
         ),
-        Node(
-            package='imu_filter_madgwick',
-            executable='imu_filter_madgwick_node',
-            name='imu_filter',
-            output='screen',
-            parameters=[{'publish_tf': False, 'use_mag': False}],
-            remappings=[('/imu/data_raw', '/camera/camera/imu')],
-        ),
         IncludeLaunchDescription(
             rtabmap_launch_file,
             launch_arguments={
-                'rgb_topic': '/camera/camera/color/image_raw',
-                'depth_topic': '/camera/camera/aligned_depth_to_color/image_raw',
-                'camera_info_topic': '/camera/camera/color/camera_info',
+                'rgb_topic': '/camera/camera/infra1/image_rect_raw',
+                'depth_topic': '/camera/camera/depth/image_rect_raw',
+                'camera_info_topic': '/camera/camera/infra1/camera_info',
                 'qos': '1',
-                'queue_size': '200',
+                'namespace': '',
+                #'queue_size': '200',
                 'rviz': 'false',
                 'rtabmap_viz': 'false',
                 'frame_id': 'base_footprint',
-                'publish_tf_odom': 'true',
-                'wait_imu_to_init': 'true',
-                'namespace': '',
-                'rtabmap_args': '--delete_db_on_start --Vis/MaxFeatures 1000 --Kp/DetectorStrategy 2 --Grid/3D false --Vis/FeatureType 2 --Rtabmap/DetectionRate 2 --Reg/Force3DoF true',
-                #'rtabmap_args': '--delete_db_on_start --Vis/MaxFeatures 1000 --Rtabmap/DetectionRate 1 --Reg/Force3DoF true',
-                'odom_args': '--Reg/Force3DoF',
+                #'publish_tf_odom': 'true',
+                #'rtabmap_args': '--delete_db_on_start --Vis/MaxFeatures 1000 --Grid/3D false --Rtabmap/DetectionRate 10 --Reg/Force3DoF true --Kp/DetectorStrategy 2 --Vis/FeatureType 2',
+                'rtabmap_args': '--delete_db_on_start --Kp/DetectorStrategy 2 --Vis/FeatureType 2 --Vis/MaxFeatures 1000 --Rtabmap/DetectionRate 1',
+                #'rtabmap_args': '--delete_db_on_start --Vis/CorType 1 --Reg/Force3DoF true',
                 #'odom_args': '--Odom/Strategy 1  --Reg/Force3DoF',
-                'rgbd_sync': 'true',
-                'imu_topic': '/imu/data',
+                #'odom_args': '--Reg/Force3DoF',
+                #'rgbd_topic': '/camera/camera/rgbd',
+                #'rgbd_sync': 'true',
+                #'imu_topic': '/imu/data',
                 #'subscribe_scan': 'true',
                 #'scan_topic': '/scan',
             }.items()

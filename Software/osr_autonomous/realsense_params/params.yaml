@@ -1,0 +1,3 @@
+depth_module.emitter_enabled: 0
+filter_by_sequence_id.enable: true
+filter_by_sequence_id.sequence_id: 2

@@ -13,6 +13,8 @@ setup(
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
         (os.path.join('share', package_name, 'launch'), glob(os.path.join('launch', '*launch.[pxy][yma]*'))),
+        (os.path.join('share', package_name, 'nav2_params'), glob(os.path.join('nav2_params', '*.yaml'))),
+        (os.path.join('share', package_name, 'realsense_params'), glob(os.path.join('realsense_params', '*.yaml'))),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
