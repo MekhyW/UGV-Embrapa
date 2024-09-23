@@ -1,62 +1,67 @@
-# Mecânica
+# Mechanics
 
-## Modelo 3D
-O modelo base 3D pode ser encontrado em [OnShape](https://cad.onshape.com/documents/e4f00b1a3d2edb1a84bbba1c/w/8ab8f394324bcc586236ef5d/e/9191e5ad2a70f387b419bc55?renderMode=0&uiState=645ede92f3a1a9205158b296) ou no arquivo STEP fornecido acima.
+## 3D Model
+The base 3D model can be found in [OnShape](https://cad.onshape.com/documents/e4f00b1a3d2edb1a84bbba1c/w/8ab8f394324bcc586236ef5d/e/9191e5ad2a70f387b419bc55?renderMode=0&uiState=645ede92f3a1a9205158b296) or in the STEP file provided above.
 
 ![image](https://github.com/pfeinsper/unmaned-ground-vehicle-2024.1/assets/72100554/a2137652-97fa-4312-889d-916f1c728e59)
 
 
-## Adaptações da Documentação Oficial
-Foram necessárias algumas adaptações na montagem da documentação oficial, uma vez que os componentes eram importados e parte deles não estava disponível para entrega. Para contornar esse problema, foram compradas peças equivalentes que permitissem adaptação para a aplicação proposta.
-A seguir, as peças que passaram por esse processo adaptativo estão listadas e comentadas.
-### Perfis da Suspensão
-As primeiras peças a serem adaptadas foram os perfis de alumínio que compõem parte da suspensão do robô, uma vez que não foi possível encontrá-los nos comprimentos especificados na documentação oficial da Nasa, de 96mm. Como alternativa foram comprados perfis de tamanho superior, que foram cortados na dimensão correta.
+## Adaptations to Official Documentation
+Some adaptations were necessary in the assembly of the official documentation, since the components were imported and some of them were not available for delivery. To get around this problem, equivalent parts were purchased that would allow adaptation for the proposed application.
+The parts that underwent this adaptation process are listed and commented below.
+### Suspension Profiles
+The first parts to be adapted were the aluminum profiles that make up part of the robot's suspension, since it was not possible to find them in the lengths specified in NASA's official documentation, 96 mm. As an alternative, larger profiles were purchased and cut to the correct size.
 
 ![image](https://github.com/pfeinsper/unmaned-ground-vehicle-2024.1/assets/62897902/4b00c4d5-f164-4cf2-847e-b903f16ecaa5)
 
-Após o corte dos perfis, a rosca para alocação do parafuso M4 utilizado na montagem precisou ser refeita para todos os quatro furos de cada uma das peças cortadas. A operação de rosqueamento foi realizada manualmente e composta por três etapas, utilizando machos de tamanhos diferentes até chegar no tamanho desejado da rosca. A peça não precisou ser furada novamente, uma vez que seus furos eram passantes, abrangendo toda a estrutura, independente do comprimento.
+After cutting the profiles, the thread for the M4 screw used in the assembly had to be redone for all four holes in each of the cut parts. The threading operation was carried out manually and consisted of three stages, using taps of different sizes until the desired thread size was reached. The part did not need to be drilled again, since its holes were through holes, covering the entire structure, regardless of length.
 
 ![image](https://github.com/pfeinsper/unmaned-ground-vehicle-2024.1/assets/62897902/6dc17718-f09a-4de4-a52c-d962fd01e204)
 
-### Barras de Alumínio do Corpo 
-As barras de alumínio utilizadas na montagem do corpo do robô também precisaram ser adaptadas, uma vez que também foram compradas em comprimento superior ao especificado e depois cortadas no tamanho correto, de 96 mm.
+### Aluminum Body Bars
 
-Após realização das operações de corte nas peças, foi necessário realizar a furação das barras, uma vez que o furo existente não era passante como no perfil. Além disso, também foi necessário realizar o rosqueamento em duas etapas, bem como ocorreu com a outra peça citada anteriormente.
+The aluminum bars used to assemble the robot body also needed to be adapted, since they were also purchased in a length greater than that specified and then cut to the correct size, 96 mm.
 
-Na operação de furação foram realizadas as seguintes etapas para garantir um melhor alinhamento do furo:
-1.	pintura da face a ser furada com um marcador.
-2.	Remoção da tinta para marcação do furo com auxílio de um marcador de altura vertical. Traçado realizado com dimensão equivalente à metade do lado da face, garantindo que as retas se cruzem no centro.
-3.	Realização de uma marcação central para garantir que a broca não seja inserida de forma desalinhada, etapa realizada com um equipamento de punção de centro, uma morsa e um martelo.
-4.	Furação com auxílio de uma fresadora manual de bancada, buscando alinhar a ponta da broca com a marcação realizada na etapa anterior. Avançar e recuar a broca durante o processo, garantindo escoamento do cavaco e dissipação do calor gerado.
+After performing the cutting operations on the parts, it was necessary to drill the bars, since the existing hole was not through like in the profile. In addition, it was also necessary to perform the threading in two stages, as was the case with the other part mentioned above.
+
+During the drilling operation, the following steps were performed to ensure better alignment of the hole:
+
+1. Painting the face to be drilled with a marker.
+
+2. Removing the paint to mark the hole with the aid of a vertical height marker. The line was drawn with a dimension equivalent to half the side of the face, ensuring that the straight lines intersect in the center.
+
+3. Making a central mark to ensure that the drill is not inserted misaligned, a step performed with a center punch, a vice and a hammer.
+
+4. Drilling with the aid of a manual benchtop milling machine, aiming to align the tip of the drill with the marking made in the previous step. Advance and retreat the drill during the process, ensuring chip evacuation and dissipation of the heat generated.
 
 ![image](https://github.com/pfeinsper/unmaned-ground-vehicle-2024.1/assets/62897902/f95e6519-0d76-4535-a70d-1e3676e8d23a)
 
-O processo de rosqueamento também foi necessário e foi refeito de forma identica ao procedimento descrito para os perfis. 
+The threading process was also necessary and was redone in a manner identical to the procedure described for the profiles.
 
-A peça com o rolamento para encaixe da suspensão também não estava disponível no modelo original da documentação da NASA, dessa forma foi adotada outra com diâmetro interno equivalente (Figura 28). Embora a substituta não encaixe perfeitamente e cause uma leve deformação estrutural, optou-se por não realizar nenhuma adaptação pois os componentes poderiam ser danificados e não possuíam substitutos. O efeito de deformação resultante não comprometeu o funcionamento do rover. 
+The part with the bearing for fitting the suspension was also not available in the original model in NASA documentation, so another with an equivalent internal diameter was used (Figure 28). Although the replacement did not fit perfectly and caused slight structural deformation, it was decided not to make any adaptations because the components could be damaged and there were no substitutes. The resulting deformation effect did not compromise the rover's operation.
 
 ![image](https://github.com/pfeinsper/unmaned-ground-vehicle-2024.1/assets/62897902/749860f7-e1b6-4cc8-a596-2a6e98edfee1)
 
-## Revisão de Erros da Documentação Oficial 
+## Review of Official Documentation Errors
 
-Um dos componentes da suspensão foi identificado erroneamente na documentação oficial, com código inicial 1601, que na realidade corresponde ao componente número 1611. Na visualização 3D da montagem, a peça identificada com código correspondente ao informado na documentação oficial apresenta diâmetro interno com valor inferior a 8mm, não montando no eixo especificado.
+One of the suspension components was incorrectly identified in the official documentation, with initial code 1601, which in reality corresponds to component number 1611. In the 3D view of the assembly, the part identified with the code corresponding to that informed in the official documentation has an internal diameter with a value of less than 8 mm, not assembling on the specified axle.
 
 ![image](https://github.com/pfeinsper/unmaned-ground-vehicle-2024.1/assets/62897902/36c3ddc6-d7ef-491b-82d5-7051012ea459)
 
-## Componentes Adicionais Fabricados
+## Additional Components Manufactured
 
-Para garantir a adaptabilidade do robô ao ambiente de monitoramento, alguns componentes adicionais precisaram ser fabricados, dentre eles os suporte das câmeras e o do LiDAR, permitindo que esses componentes sejam futuramente alocados na estrutura.
+To ensure the robot's adaptability to the monitoring environment, some additional components needed to be manufactured, including the camera and LiDAR supports, allowing these components to be placed in the structure in the future.
 
-### Suporte das Câmeras
+### Camera Support
 
-Como requisitado pelo cliente, também foram desenvolvidos alguns suportes para câmeras e um LIDAR, utilizando o software Fusion 360 para modelagem e a tecnologia de impressão 3D para materialização do projeto.
+As requested by the client, some supports for cameras and a LIDAR were also developed, using Fusion 360 software for modeling and 3D printing technology to materialize the project.
 
 <img width="470" alt="suporte1" src="https://github.com/pfeinsper/unmaned-ground-vehicle-2024.1/assets/38721933/3ee1b43e-3dae-476a-853d-57575b2d889a">
 
 <img width="474" alt="Screenshot at Jun 10 11-16-50" src="https://github.com/pfeinsper/unmaned-ground-vehicle-2024.1/assets/38721933/ca6b2074-cb1d-4ac4-968d-367030aa3d81">
 
 
-### Suporte do LiDAR
+### LiDAR Support
 
 <img width="460" alt="suporte3" src="https://github.com/pfeinsper/unmaned-ground-vehicle-2024.1/assets/38721933/a7b702c6-86ae-4b73-a62c-17ce572221a8">
 

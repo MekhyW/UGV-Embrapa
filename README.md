@@ -83,32 +83,6 @@ To automate the bringup and eliminate the need for SSH access, we configured the
  sudo chmod 644 /etc/systemd/system/osr_startup.service
  ```
 
-### Configuration LCD display 16x02 with I²C Conversion Module
-
-It is necessary to supply it with 5V on one of the available power pins marked by the brain board silkscreen, as well as connect the SDA and SCL pins.
-
-![Display Links](https://github.com/pfeinsper/unmaned-ground-vehicle-2024.1/assets/72100554/505222e8-aac1-4e31-95c6-8f10a74234f2)
-
-After connecting it to the board, the server was accessed via SSH and the `RPi_GPIO_i2c_LCD` library was installed via the terminal:
-
-```bash
-sudo pip3 install RPi-GPIO-I2C-LCD
-```
-
-With the library installed, it was necessary to look for the address, (0x27), i2c of the display using the command:
-```bash
-ubuntu@embrapa:~$ i2cdetect -y 1
-```
-The strategy adopted to reduce consumption was to update the display within a certain time, for this it was necessary to add a command via the ‘nano’ editor to execute the script every 5 minutes:
-```bash
-ubuntu@embrapa:~$ crontab -e
-```
-
-In the last line the code was added:
-```bash
-*/5 * * * * /usr/bin/python3 /home/ubuntu/osr_ws/src/ihm_lcd.py
-```
-
 ### Image Acquisition
 
 1. **Installation of Required Libraries**:
@@ -224,31 +198,6 @@ _UGV operating flowchart_
 
  The Deadman button, located on the back of the controller, must be pressed continuously to keep the UGV operating. Releasing this button results in stopping
  immediate release of the UGV, as an additional security measure.
-
-# Operation
-To operate the UGV, the user must:
-
-1. Connect the Control and UGV:
-
- Press the power button on the controller and then turn on the UGV.
-
-2. Adjust Speed ​​and Direction:
-
- Use the levers to control the speed and direction of the UGV as needed for the mission.
-
-3. Monitor the Operation:
-
- Be aware of the UGV's response and adjust controls as necessary. Use the rotation lever and emergency button for quick maneuvers and stops.
-
-4. Security:
-
- Always keep one finger on the Deadman button to ensure safe operation. In case of emergency, use the emergency button to stop the UGV immediately.
-
- # Controller photo
-
-![Controller front](https://github.com/pfeinsper/unmaned-ground-vehicle-2024.1/assets/49559187/aa9ca24c-7300-449e-a2a1-b97dc7d0b22e)
-
-![Controller behind](https://github.com/pfeinsper/unmaned-ground-vehicle-2024.1/assets/49559187/849eaf65-5603-4b8a-b43f-8160a4e89344)
 
 ## Results
 

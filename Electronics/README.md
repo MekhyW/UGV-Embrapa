@@ -1,52 +1,52 @@
-# Eletrônica
+# Electronics 
 
-## Esquemáticos e Detalhamento Geral de Funcionamento
+## Schematics and General Operation Details 
 
-A eletrônica do protótipo é composta por duas placas: a placa de acionamento dos motores (Motor Board), onde estão localizados os circuitos de potência e a placa responsável por comandar todo o funcionamento do sistema (Brain Board), onde estão circuitos de controle e está alocada uma Raspberry Pi 4, modelo B de 8 GB, com microprocessador quad-core de 64-bits ARM-Cortex A72, rodando a 1,5 GHz.
+The prototype's electronics are composed of two boards: the motor drive board (Motor Board), where the power circuits are located, and the board responsible for controlling the entire system's operation (Brain Board), where the control circuits are located and a Raspberry Pi 4, model B, 8 GB, with a 64-bit quad-core ARM-Cortex A72 microprocessor, running at 1.5 GHz, is located.
 
 ![image](https://github.com/pfeinsper/unmaned-ground-vehicle-2024.1/assets/62897902/1dc84aa9-ae4c-47ea-b9fe-22ce198eccc0)
 
-### Diagramas de Alimentação 
+### Power Supply Diagrams
 
-Analisando primeiro a alimentação do sistema, uma bateria fornecendo 14,8V DC é conectada diretamente à placa de acionamento, passando por um circuito de proteção, que possui um fusível, um resistor de 1 kΩ e um diodo, que atuam como proteção do circuito dos motores. Além disso, um módulo de monitoramento de tensão e corrente (INA260) é utilizado para medição de sobrecorrente, além de um multímetro, que é utilizado para monitoramento do usuário dos dados de corrente e tensão.
+First, analyzing the system power supply, a battery supplying 14.8V DC is connected directly to the drive board, passing through a protection circuit, which has a fuse, a 1 kΩ resistor and a diode, which act as protection for the motor circuit. In addition, a voltage and current monitoring module (INA260) is used to measure overcurrent, in addition to a multimeter, which is used for user monitoring of current and voltage data.
 
 ![image](https://github.com/pfeinsper/unmaned-ground-vehicle-2024.1/assets/62897902/9f748100-b6f7-4ea9-af1d-d4a25ad7c739)
 
 
-A tensão 14,8V é usada na alimentação de dois reguladores, um step-down de 12V (D24V22Fx), usado para alimentar os drivers da Roboclaw e outro de 5V (D24V150Fx). Há também um terceiro regulador de tensão que converte a tensão de 5V para 3,3V (MIC2937A-3.3WT), alimentando o módulo de expansão de PWM (PCA9685), o monitor de tensão e corrente e os LED’s de sinalização de ambas as placas. A tensão de 5V, por sua vez, também realiza a alimentação do módulo de expansão de PWM, dos servos, da Raspberry Pi, do display da IHM e dos encoders dos motores. Os motores são alimentados pela Roboclaw via PWM com tensão máxima de 12V.
+The 14.8V voltage is used to power two regulators, a 12V step-down regulator (D24V22Fx), used to power the Roboclaw drivers, and a 5V regulator (D24V150Fx). There is also a third voltage regulator that converts the voltage from 5V to 3.3V (MIC2937A-3.3WT), powering the PWM expansion module (PCA9685), the voltage and current monitor, and the signaling LEDs on both boards. The 5V voltage, in turn, also powers the PWM expansion module, the servos, the Raspberry Pi, the HMI display, and the motor encoders. The motors are powered by Roboclaw via PWM with a maximum voltage of 12V.
 
-### Diagramas de Sinais
+### Signal Diagrams
 
-Para o diagrama de sinais do sistema, note que um novo bloco foi adicionado, o conjunto entre o operador e o rádio controle, responsável por enviar os comandos por meio de ondas de rádio até a Raspberry Pi, que recebe o sinal por meio de um módulo USB. Os dados recebidos pelo microprocessador são enviados na serial e usados para o controle dos motores e servos. 
+For the system signal diagram, note that a new block has been added, the set between the operator and the radio control, responsible for sending commands via radio waves to the Raspberry Pi, which receives the signal via a USB module. The data received by the microprocessor is sent via serial and used to control the motors and servos.
 
 ![image](https://github.com/pfeinsper/unmaned-ground-vehicle-2024.1/assets/62897902/25b216b0-da69-4218-9a60-26376cbdb3fe)
 
-A malha de controle dos seis motores é comandada pela Raspberry Pi, que recebe a referência do rádio controle e envia os comandos para os drivers da Roboclaw, que realizam o acionamento via PWM. O fechamento da malha é realizado pelos encoders, que são responsáveis pelo sensoriamento, enviando os dados coletados ao controlador presente no driver.
+The control loop for the six motors is controlled by the Raspberry Pi, which receives the reference from the radio control and sends the commands to the Roboclaw drivers, which perform the activation via PWM. The loop is closed by the encoders, which are responsible for the sensing, sending the collected data to the controller present in the driver.
 
-Os quatro servos, por sua vez, são controlados em malha aberta (fechada internamente) acionados por meio de um sinal PWM. Este sinal é fornecido pelo módulo PCA9685 (expansão), usado para ampliar a quantidade de servos que podem ser controlados, por meio da geração de 16 novos canais PWM. A comunicação desse módulo com a Raspberry Pi ocorre por meio do protocolo de comunicação I2C.
+The four servos, in turn, are controlled in an open loop (internally closed) activated by means of a PWM signal. This signal is provided by the PCA9685 module (expansion), used to increase the number of servos that can be controlled, by generating 16 new PWM channels. Communication between this module and the Raspberry Pi occurs via the I2C communication protocol.
 
-Considerando a comunicação do micro-computador com o módulo de monitoramento de tensão e corrente (INA260), nota-se que o envio de dados também ocorre por meio de um protocolo de comunicação I2C. O módulo também se comunica com os LED’s de sinalização para alertar o usuário caso seu resistor de shunt interno detecte alguma alteração no sistema de alimentação.
+Considering the communication between the microcomputer and the voltage and current monitoring module (INA260), it is noted that data is also sent via an I2C communication protocol. The module also communicates with the signaling LEDs to alert the user if its internal shunt resistor detects any change in the power supply system.
 
-Além do módulo de expansão e do monitor, a comunicação com o display da IHM, que será futuramente implementada, também ocorrerá de acordo com o protocolo I2C. O motivo para tal escolha é que a placa de controle apresenta um barramento I2C disponível, que poderia ser adaptado para a conexão do display com baixa quantidade de adaptações necessárias.
+In addition to the expansion module and the monitor, communication with the HMI display, which will be implemented in the future, will also occur according to the I2C protocol. The reason for this choice is that the control board has an available I2C bus, which could be adapted for connecting the display with a low number of necessary adaptations.
 
-Outra observação importante em relação ao diagrama é que a Raspberry Pi também está responsável pelo controle do regulador de tensão de 12V por meio de um sinal de enable, ligando ou desligando o output de 12V.
+Another important observation regarding the diagram is that the Raspberry Pi is also responsible for controlling the 12V voltage regulator through an enable signal, turning the 12V output on or off.
 
-Analisando um pouco mais a placa de controle, observa-se a presença de alguns LED’s de sinalização, esses componentes possuem como finalidade a comunicação com o usuário, sinalizando por exemplo quando ocorre a transferência de dados pela serial, acendendo quando os bits são transferidos. 
+A closer look at the control board reveals the presence of some signaling LEDs. These components are intended for communication with the user, signaling, for example, when data is being transferred via the serial port, lighting up when the bits are transferred.
 
-Por fim, o último fluxo de dados a ser analisado é o indicador do estado de emergência, no qual um sinal digital de nível lógico alto é enviado pelo botão de emergência ao microprocessador, que comunica a situação ao usuário por meio do display da IHM. 
+Finally, the last data stream to be analyzed is the emergency status indicator, in which a high logic level digital signal is sent by the emergency button to the microprocessor, which communicates the situation to the user via the HMI display.
 
-## Circuito de Emergência Físico
+## Physical Emergency Circuit
 
-O esquemático do circuito de emergência físico utilizado para desernegizar o robô está ilustrado a seguir.
+The schematic of the physical emergency circuit used to de-energize the robot is illustrated below.
 
 ![image](https://github.com/pfeinsper/unmaned-ground-vehicle-2024.1/assets/62897902/a42c251f-cbff-423a-822a-de9d12807db7)
 
-Para indicação do estado de emergência ao usuário, foi adotado um sinaleiro vermelho, que acende assim que o botão for pressionado. O componente apresenta uma resistência interna de 1800 Ω, suportando tensões de até 24V e seu acionamento é realizado por uma chave normalmente aberta, responsável por fechar o circuito após pressionamento do botão. 
+To indicate the emergency status to the user, a red indicator light was adopted, which lights up as soon as the button is pressed. The component has an internal resistance of 1800 Ω, supporting voltages of up to 24V and is activated by a normally open switch, responsible for closing the circuit after the button is pressed.
 
-Foi implementado também um botão de emergência remoto, cujo funcionamento está explicado na pasta de programação. 
+A remote emergency button was also implemented, whose operation is explained in the programming folder.
 
-## Detalhamento Circuito Display
+## Display Circuit Details
 
-O esquemático de conexão de pinos do display para garantir a comunicação I2C está representado a seguir. Os pinos para conexão de 5V e GND estão disponíveis na raspberry pi e uma extensão dos pinos SCL e SDA pode ser encontrada na placa de controle.
+The schematic of the display pin connection to ensure I2C communication is shown below. The pins for connecting 5V and GND are available on the Raspberry Pi and an extension of the SCL and SDA pins can be found on the control board.
 
 ![image](https://github.com/pfeinsper/unmaned-ground-vehicle-2024.1/assets/62897902/89fe5d82-cf03-44a6-9ce3-b9f463eb3dc9)
