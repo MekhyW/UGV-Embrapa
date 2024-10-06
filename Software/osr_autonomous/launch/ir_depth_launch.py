@@ -22,6 +22,9 @@ def generate_launch_description():
 
     realsense_params_file = os.path.join(get_package_share_directory('osr_autonomous'), 'realsense_params', 'params.yaml')
 
+    nav2_params_file = os.path.join(get_package_share_directory('osr_autonomous'), 'nav2_params', 'params.yaml')
+    nav2_map_file = os.path.join(get_package_share_directory('osr_autonomous'), 'nav2_params', 'map.yaml')
+
     #Path to URDF
     urdf_file = os.path.join(get_package_share_directory('osr_gazebo'), 'urdf', 'osr.urdf.xacro')
 
@@ -86,6 +89,13 @@ def generate_launch_description():
                 'imu_topic': '/imu/data',
                 #'subscribe_scan': 'true',
                 #'scan_topic': '/scan',
+            }.items()
+        ),
+        IncludeLaunchDescription(
+            nav2_launch_file,
+            launch_arguments={
+                'params_file': nav2_params_file,
+                'map': nav2_map_file,
             }.items()
         ),
     ])
