@@ -44,7 +44,7 @@ def generate_launch_description():
             output='screen',
             emulate_tty=True,
             respawn=True,
-            parameters=[{'centered_pulse_widths': [165,140,175,145]}]  # pulse width where the corner motors are in their default position, see rover_bringup.md.
+            parameters=[{'centered_pulse_widths': [165,140,55,145]}]  # pulse width where the corner motors are in their default position, see rover_bringup.md.
         )
     )
     ld.add_action(
@@ -107,17 +107,17 @@ def generate_launch_description():
             ]        
         )
     )
-#    ld.add_action(
-#        Node(
-#            package='osr_control',
-#            executable='joy_extras',
-#            output='screen',
-#            emulate_tty=True,
-#            parameters=[
-#                {"duty_button_index": 1}  # which button toggles duty mode on/off
-#            ]
-#        )
-#    )
+    ld.add_action(
+        Node(
+            package='osr_control',
+            executable='joy_extras',
+            output='screen',
+            emulate_tty=True,
+            parameters=[
+                {"duty_button_index": 1}  # which button toggles duty mode on/off
+            ]
+        )
+    )
 
 
 

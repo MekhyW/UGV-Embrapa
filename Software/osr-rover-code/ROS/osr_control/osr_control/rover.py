@@ -39,7 +39,7 @@ class Rover(Node):
         self.d3 = self.get_parameter('rover_dimensions.d3').get_parameter_value().double_value
         self.d4 = self.get_parameter('rover_dimensions.d4').get_parameter_value().double_value
 
-        self.min_radius = 0.45  # [m]
+        self.min_radius = 0.6  # [m]
         self.max_radius = 6.4  # [m]
 
         self.no_cmd_thresh = 0.05  # [rad]
