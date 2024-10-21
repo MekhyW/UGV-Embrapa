@@ -3,15 +3,16 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-UGV Embrapa documentation
-=========================
+UGV-Embrapa: Monitoring of Fruit and Forestry Fields
+====================================================
 
-Add your content using ``reStructuredText`` syntax. See the
-`reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
-documentation for details.
-
+Welcome to the documentation for the UGV-Embrapa project, an Unmanned Ground Vehicle (UGV) for monitoring fruit and forestry plots.
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
+   overview
+   software_setup
+   remote_control
+   contributors

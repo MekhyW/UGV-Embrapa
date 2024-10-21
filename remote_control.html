@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Remote Control Operation &#8212; UGV Embrapa 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Contributors" href="contributors.html" />
+    <link rel="prev" title="Environment Setup" href="software_setup.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="remote-control-operation">
+<h1>Remote Control Operation<a class="headerlink" href="#remote-control-operation" title="Permalink to this headline">¶</a></h1>
+<p>The UGV (Unmanned Ground Vehicle) can be operated manually using a Spektrum DXS radio control transmitter, which communicates with a receiver installed in the UGV. This section describes how to use the remote control for manual operation of the robot.</p>
+<div class="section" id="controller-setup">
+<h2>Controller Setup<a class="headerlink" href="#controller-setup" title="Permalink to this headline">¶</a></h2>
+<p>The mapping of control buttons and levers has been configured to facilitate the operation of the UGV. The following parameters have been set for the controller:</p>
+<ul class="simple">
+<li><p><strong>scale_linear.x</strong>: 0.12</p></li>
+<li><p><strong>axis_linear.x</strong>: 1</p></li>
+<li><p><strong>axis_angular.yaw</strong>: 2</p></li>
+<li><p><strong>axis_angular.pitch</strong>: 4</p></li>
+<li><p><strong>scale_angular.yaw</strong>: 1.25</p></li>
+<li><p><strong>scale_angular.pitch</strong>: 0.25</p></li>
+<li><p><strong>scale_angular_turbo.yaw</strong>: 0.0</p></li>
+<li><p><strong>scale_linear_turbo.x</strong>: 0.0</p></li>
+<li><p><strong>enable_button</strong>: 0</p></li>
+<li><p><strong>enable_turbo_button</strong>: 1</p></li>
+</ul>
+<p>These parameters are used by the ROS 2 <cite>joy</cite> node to interpret the controller inputs.</p>
+</div>
+<div class="section" id="control-mapping">
+<h2>Control Mapping<a class="headerlink" href="#control-mapping" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Speed Control</strong>:
+The left lever controls the speed of the UGV. Push forward to move the UGV forward, and pull back to reverse.</p></li>
+<li><p><strong>Direction Control</strong>:
+The right lever is responsible for steering the UGV. Move the lever left or right to rotate the UGV in the respective direction.</p></li>
+<li><p><strong>On/Off Switch</strong>:
+The lower central button turns the UGV on or off.</p></li>
+<li><p><strong>Emergency Stop</strong>:
+The emergency button is located at the top left of the controller. When pressed, it immediately stops the UGV by setting <cite>scale_linear_turbo</cite> to 0.0.</p></li>
+<li><p><strong>Fine Rotation</strong>:
+A switch at the top right of the controller allows for fine adjustment of rotation.</p></li>
+<li><p><strong>Deadman Switch</strong>:
+Located on the back of the controller, this button must be continuously pressed to keep the UGV operational. Releasing it will immediately stop the UGV as a safety measure.</p></li>
+</ol>
+</div>
+<div class="section" id="emergency-routine">
+<h2>Emergency Routine<a class="headerlink" href="#emergency-routine" title="Permalink to this headline">¶</a></h2>
+<p>An emergency routine has been implemented to ensure the operational safety of the rover:</p>
+<ol class="arabic simple">
+<li><p>When the emergency button is pressed, <cite>scale_linear_turbo</cite> is set to 0.0.</p></li>
+<li><p>This results in the rover coming to a complete and immediate stop.</p></li>
+</ol>
+<img alt="Emergency flowchart" class="align-center" src="https://github.com/pfeinsper/unmaned-ground-vehicle-2024.1/assets/49559187/f8c5dcd0-ad6a-4c44-ac0e-e2f40bb0a978" />
+</div>
+<div class="section" id="operating-the-ugv">
+<h2>Operating the UGV<a class="headerlink" href="#operating-the-ugv" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Ensure the receiver dongle is properly connected to the UGV.</p></li>
+<li><p>Turn on the Spektrum DXS radio control transmitter.</p></li>
+<li><p>Use the On/Off switch to power up the UGV.</p></li>
+<li><p>Press and hold the Deadman switch on the back of the controller.</p></li>
+<li><p>Use the left lever to control speed and the right lever to steer.</p></li>
+<li><p>For fine rotations, use the rotation switch at the top right.</p></li>
+<li><p>In case of emergency, press the emergency stop button to immediately halt the UGV.</p></li>
+<li><p>When finished, use the On/Off switch to power down the UGV.</p></li>
+</ol>
+<p>Remember to always operate the UGV in a safe environment and follow all safety protocols.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">UGV Embrapa</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="software_setup.html">Environment Setup</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Remote Control Operation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#controller-setup">Controller Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#control-mapping">Control Mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#emergency-routine">Emergency Routine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#operating-the-ugv">Operating the UGV</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributors.html">Contributors</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="software_setup.html" title="previous chapter">Environment Setup</a></li>
+      <li>Next: <a href="contributors.html" title="next chapter">Contributors</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2024, Felipe Catapano Emrich Melo, Rafael Eli Katri, Gabriel Brunoro Motta Tumang, Luana de Matos Sorpreso.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/remote_control.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

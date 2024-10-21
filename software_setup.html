@@ -1,0 +1,273 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Environment Setup &#8212; UGV Embrapa 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Remote Control Operation" href="remote_control.html" />
+    <link rel="prev" title="Overview" href="overview.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="environment-setup">
+<h1>Environment Setup<a class="headerlink" href="#environment-setup" title="Permalink to this headline">¶</a></h1>
+<p>This section describes the steps to prepare the development environment for the UGV project, including the installation of the operating system, ROS 2 Humble, and the configuration of the Raspberry Pi for control.</p>
+<div class="section" id="operating-system-installation">
+<h2>Operating System Installation<a class="headerlink" href="#operating-system-installation" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p>Download Ubuntu Server Image:</p>
+<ul class="simple">
+<li><p>Go to the <a class="reference external" href="https://ubuntu.com/download/server">official Ubuntu Server website</a> and download the latest image.</p></li>
+<li><p>Use software like Raspberry Pi Imager to save the image to the SD card.</p></li>
+</ul>
+</li>
+<li><p>Initial Setup:</p>
+<ul>
+<li><p>Insert the SD card into the Raspberry Pi and turn on the device.</p></li>
+<li><p>Configure Wi-Fi network and other basic preferences during startup.</p></li>
+<li><p>Update the operating system:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo apt update
+sudo apt upgrade
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="configuring-raspberry-pi-as-server-and-ssh-communication">
+<h2>Configuring Raspberry Pi as Server and SSH Communication<a class="headerlink" href="#configuring-raspberry-pi-as-server-and-ssh-communication" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p>Server Mode:</p>
+<ul>
+<li><p>Server configuration allows Raspberry Pi to be accessed remotely.</p></li>
+<li><p>Connect to the server using SSH:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ssh embrapa@10.42.0.1
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="ros-humble-installation">
+<h2>ROS Humble Installation<a class="headerlink" href="#ros-humble-installation" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p>Add ROS Repository Key:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo apt install software-properties-common
+sudo add-apt-repository universe
+sudo apt update
+sudo apt install curl
+curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc <span class="p">|</span> sudo apt-key add -
+</pre></div>
+</div>
+</li>
+<li><p>Add ROS Repository:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo sh -c <span class="s1">&#39;echo &quot;deb http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main&quot; &gt; /etc/apt/sources.list.d/ros2-latest.list&#39;</span>
+sudo apt update
+sudo apt install ros-humble-desktop
+</pre></div>
+</div>
+</li>
+<li><p>Configure ROS Environment:</p>
+<p>Add the following lines to the <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code> file:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span> /opt/ros/humble/setup.bash
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="manual-rover-bringup">
+<h2>Manual Rover Bringup<a class="headerlink" href="#manual-rover-bringup" title="Permalink to this headline">¶</a></h2>
+<p>To manually start the rover, run the following commands in the terminal:</p>
+<ol class="arabic">
+<li><p>Make sure the program is not already running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl stop osr_startup
+</pre></div>
+</div>
+</li>
+<li><p>Execute the bringup command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2 launch osr_bringup osr_launch.py
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="automatic-bringup-with-launch-script">
+<h2>Automatic Bringup with Launch Script<a class="headerlink" href="#automatic-bringup-with-launch-script" title="Permalink to this headline">¶</a></h2>
+<p>To automate the bringup and eliminate the need for SSH access, configure the Raspberry Pi to launch the rover code automatically:</p>
+<ol class="arabic">
+<li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">init_scripts</span></code> folder:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/osr_ws/src/osr-rover-code/init_scripts
+</pre></div>
+</div>
+</li>
+<li><p>Create symbolic links:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo ln -s <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/launch_osr.sh /usr/local/bin/launch_osr.sh
+sudo ln -s <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/osr_paths.sh /usr/local/bin/osr_paths.sh
+</pre></div>
+</div>
+</li>
+<li><p>Copy the service file to the systemd services directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo cp osr_startup.service /etc/systemd/system/osr_startup.service
+</pre></div>
+</div>
+</li>
+<li><p>Adjust service file permissions:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo chmod <span class="m">644</span> /etc/systemd/system/osr_startup.service
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="image-acquisition-setup">
+<h2>Image Acquisition Setup<a class="headerlink" href="#image-acquisition-setup" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p>Installation of Required Libraries:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>sudo apt install ros-humble-cv-bridge
+sudo apt install ros-humble-image-transport
+</pre></div>
+</div>
+</li>
+<li><p>Camera Configuration:</p>
+<ul>
+<li><p>Connect Intel RealSense D435i and Logitech C920 HD PRO cameras to Raspberry Pi.</p></li>
+<li><p>Use the following commands to check and adjust settings:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>rs-enumerate-devices
+v4l2-ctl --list-devices
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>Publishing and Viewing Images:</p>
+<ul>
+<li><p>Run ROS nodes to capture and publish images:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ros2 run realsense2_camera realsense2_camera_node
+ros2 run image_transport republish raw in:<span class="o">=</span>/camera/color/image_raw out:<span class="o">=</span>/image_raw
+</pre></div>
+</div>
+</li>
+<li><p>Another way to start capturing images:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>systemctl restart start_turtle.service
+</pre></div>
+</div>
+</li>
+<li><p>To view images use Rviz2 or rqt_image_view:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ros2 run rqt_image_view rqt_image_view
+<span class="c1"># or</span>
+rviz2
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ol>
+<p>This completes the environment setup for the UGV-Embrapa project. Make sure to follow these steps carefully to ensure a proper development environment.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">UGV Embrapa</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Environment Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#operating-system-installation">Operating System Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuring-raspberry-pi-as-server-and-ssh-communication">Configuring Raspberry Pi as Server and SSH Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ros-humble-installation">ROS Humble Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#manual-rover-bringup">Manual Rover Bringup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#automatic-bringup-with-launch-script">Automatic Bringup with Launch Script</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#image-acquisition-setup">Image Acquisition Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="remote_control.html">Remote Control Operation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributors.html">Contributors</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="overview.html" title="previous chapter">Overview</a></li>
+      <li>Next: <a href="remote_control.html" title="next chapter">Remote Control Operation</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2024, Felipe Catapano Emrich Melo, Rafael Eli Katri, Gabriel Brunoro Motta Tumang, Luana de Matos Sorpreso.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/software_setup.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
