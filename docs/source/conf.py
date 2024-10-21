@@ -9,7 +9,7 @@
 project = 'UGV Embrapa'
 copyright = '2024, Felipe Catapano Emrich Melo, Rafael Eli Katri, Gabriel Brunoro Motta Tumang, Luana de Matos Sorpreso'
 author = 'Felipe Catapano Emrich Melo, Rafael Eli Katri, Gabriel Brunoro Motta Tumang, Luana de Matos Sorpreso'
-release = '0.1'
+release = '2.0'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

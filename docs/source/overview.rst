@@ -3,6 +3,9 @@ Overview
 
 The UGV-Embrapa project aims to develop an Unmanned Ground Vehicle (UGV) for monitoring fruit and forestry plots, inspired by NASA's Open Source Rover project. The UGV is controlled by a computer unit running ROS2 and navigates autonomously and safely between rows of agricultural fields.
 
+.. raw:: html
+   :file: _static/presentation.html
+
 About Embrapa Digital Agriculture
 ---------------------------------
 
