@@ -8,6 +8,9 @@ UGV-Embrapa: Monitoring of Fruit and Forestry Fields
 
 Welcome to the documentation for the UGV-Embrapa project, an Unmanned Ground Vehicle (UGV) for monitoring fruit and forestry plots.
 
+.. raw:: html
+   :file: _static/paper.html
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
