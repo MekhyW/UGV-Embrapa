@@ -125,7 +125,7 @@ Thiago Teixeira Santos
    Email: <a href="mailto:thiago.santos@embrapa.br">thiago.santos@embrapa.br</a>
    </div>
 
-Documentation and Repository Maintenance
+Documentation
 ----------------------------------------
 
 The documentation and repository maintenance for this project was handled by Felipe Catapano Emrich Melo.

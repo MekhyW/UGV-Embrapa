@@ -50,7 +50,7 @@ An emergency routine has been implemented to ensure the operational safety of th
 1. When the emergency button is pressed, `scale_linear_turbo` is set to 0.0.
 2. This results in the rover coming to a complete and immediate stop.
 
-.. image:: https://github.com/pfeinsper/unmaned-ground-vehicle-2024.1/assets/49559187/f8c5dcd0-ad6a-4c44-ac0e-e2f40bb0a978
+.. image:: _static/emergency.png
    :alt: Emergency flowchart
    :align: center
 
