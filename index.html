@@ -14,7 +14,7 @@
     <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Overview" href="overview.html" /> 
+    <link rel="next" title="Papers" href="papers.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -23,7 +23,7 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="overview.html" title="Overview"
+          <a href="papers.html" title="Papers"
              accesskey="N">next</a> |</li>
         <li class="nav-item nav-item-0"><a href="#">UGV Embrapa 2.0 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">UGV-Embrapa: Unmanned Ground Vehicle for Agricultural Monitoring</a></li> 
@@ -37,12 +37,15 @@
             
   <div class="section" id="ugv-embrapa-unmanned-ground-vehicle-for-agricultural-monitoring">
 <h1>UGV-Embrapa: Unmanned Ground Vehicle for Agricultural Monitoring<a class="headerlink" href="#ugv-embrapa-unmanned-ground-vehicle-for-agricultural-monitoring" title="Permalink to this headline">¶</a></h1>
-<p>Welcome to the documentation for the UGV-Embrapa project, an Unmanned Ground Vehicle (UGV) for monitoring fruit and forestry plots.</p>
-<iframe src="https://www.slideshare.net/slideshow/embed_code/key/lRUVEdaWz2FaN1?hostedIn=slideshare&page=upload" width="800" height="600" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe><div class="toctree-wrapper compound">
+<p>Welcome to the documentation for the UGV-Embrapa project, an Unmanned Ground Vehicle (UGV) for monitoring fruit and forestry plots.
+Here you will find information about the project, how to assemble and use the robot and how to setup the software stack to perform autonomous navigation, mapping and telemetry.</p>
+<div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="papers.html">Papers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="overview.html#about-embrapa-digital-agriculture">About Embrapa Digital Agriculture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#why-is-this-project-important">Why is this project important?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="overview.html#key-features">Key Features</a></li>
 <li class="toctree-l2"><a class="reference internal" href="overview.html#development-environment">Development Environment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="overview.html#key-components">Key Components</a></li>
@@ -51,13 +54,16 @@
 <li class="toctree-l2"><a class="reference internal" href="overview.html#future-directions">Future Directions</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="software_setup.html">Environment Setup</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="software_setup.html#operating-system-installation">Operating System Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="software_setup.html#configuring-raspberry-pi-as-server-and-ssh-communication">Configuring Raspberry Pi as Server and SSH Communication</a></li>
-<li class="toctree-l2"><a class="reference internal" href="software_setup.html#ros-humble-installation">ROS Humble Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="software_setup.html#manual-rover-bringup">Manual Rover Bringup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="software_setup.html#automatic-bringup-with-launch-script">Automatic Bringup with Launch Script</a></li>
-<li class="toctree-l2"><a class="reference internal" href="software_setup.html#image-acquisition-setup">Image Acquisition Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mechanical_assembly.html">Mechanical Assembly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="schematics_and_wiring.html">Schematics and Wiring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="slam_stack.html">SLAM Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="environment_setup_rpi.html">Environment Setup - Raspberry Pi</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="environment_setup_rpi.html#operating-system-installation">Operating System Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environment_setup_rpi.html#configuring-raspberry-pi-as-server-and-ssh-communication">Configuring Raspberry Pi as Server and SSH Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environment_setup_rpi.html#ros-humble-installation">ROS Humble Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environment_setup_rpi.html#manual-rover-bringup">Manual Rover Bringup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environment_setup_rpi.html#automatic-bringup-with-launch-script">Automatic Bringup with Launch Script</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environment_setup_rpi.html#image-acquisition-setup">Image Acquisition Setup</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="remote_control.html">Remote Control Operation</a><ul>
@@ -67,6 +73,9 @@
 <li class="toctree-l2"><a class="reference internal" href="remote_control.html#operating-the-ugv">Operating the UGV</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="environment_setup_optiplex.html">Environment Setup - Dell Optiplex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="launch_packages.html">Launch Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="waypoint_navigation.html">Waypoint Navigation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributors.html">Contributors</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="contributors.html#team-members">Team Members</a></li>
 <li class="toctree-l2"><a class="reference internal" href="contributors.html#advisor">Advisor</a></li>
@@ -87,8 +96,8 @@
         <div class="sphinxsidebarwrapper">
   <div>
     <h4>Next topic</h4>
-    <p class="topless"><a href="overview.html"
-                          title="next chapter">Overview</a></p>
+    <p class="topless"><a href="papers.html"
+                          title="next chapter">Papers</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
@@ -118,7 +127,7 @@
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="overview.html" title="Overview"
+          <a href="papers.html" title="Papers"
              >next</a> |</li>
         <li class="nav-item nav-item-0"><a href="#">UGV Embrapa 2.0 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">UGV-Embrapa: Unmanned Ground Vehicle for Agricultural Monitoring</a></li> 

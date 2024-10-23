@@ -1,5 +1,5 @@
-Environment Setup
-=================
+Environment Setup - Raspberry Pi
+================================
 
 This section describes the steps to prepare the development environment for the UGV project, including the installation of the operating system, ROS 2 Humble, and the configuration of the Raspberry Pi for control.
 

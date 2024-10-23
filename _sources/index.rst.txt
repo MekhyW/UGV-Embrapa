@@ -6,16 +6,21 @@
 UGV-Embrapa: Unmanned Ground Vehicle for Agricultural Monitoring
 ================================================================
 
-Welcome to the documentation for the UGV-Embrapa project, an Unmanned Ground Vehicle (UGV) for monitoring fruit and forestry plots.
-
-.. raw:: html
-   :file: _static/paper.html
+Welcome to the documentation for the UGV-Embrapa project, an Unmanned Ground Vehicle (UGV) for monitoring fruit and forestry plots. 
+Here you will find information about the project, how to assemble and use the robot and how to setup the software stack to perform autonomous navigation, mapping and telemetry.
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
+   papers
    overview
-   software_setup
+   mechanical_assembly
+   schematics_and_wiring
+   slam_stack
+   environment_setup_rpi
    remote_control
+   environment_setup_optiplex
+   launch_packages
+   waypoint_navigation
    contributors
