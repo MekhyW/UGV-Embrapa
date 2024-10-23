@@ -5,17 +5,18 @@
 ## Useful Links
 
 - [Project Documentation](https://mekhyw.github.io/UGV-Embrapa/)
-- [Project Paper (PDF in Brazilian Portuguese)](ugv-embrapa.pdf)
+- [First Project Paper (robot platform)](paper-1.pdf)
+- [Second Project Paper (autonomous SLAM/navigation module)](paper-2.pdf)
 - [Mentor's Projects](https://www.embrapa.br/equipe/-/empregado/351534/thiago-teixeira-santos)
 - [NASA JPL Open Source Rover](https://jplopensourcerover.com/)
 
-## Overview
+## What is this project?
 
 This project aims to develop an Unmanned Ground Vehicle (UGV) for monitoring fruit and forestry plots, inspired by NASA's Open Source Rover project. The UGV is designed to navigate autonomously and safely between rows of agricultural fields, providing valuable data for research and management.
 
-## Project Context
+## Context
 
-This UGV was developed by students of Insper College as part of their Capstone Engineering Project, in collaboration with Embrapa (Brazilian Agricultural Research Corporation). The project builds upon the foundation laid by the NASA JPL Open Source Rover, adapting it for agricultural applications.
+This UGV was developed by students of Insper College as part of their Capstone Engineering Project, in collaboration with Embrapa (Brazilian Agricultural Research Corporation), during the first and second semesters of 2024. The project builds upon the foundation laid by the NASA JPL Open Source Rover, adapting it for agricultural applications.
 
 ## Directory Structure
 
