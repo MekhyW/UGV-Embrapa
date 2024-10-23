@@ -1,7 +1,7 @@
 Environment Setup - Raspberry Pi
 ================================
 
-This section describes the steps to prepare the development environment for the UGV project, including the installation of the operating system, ROS 2 Humble, and the configuration of the Raspberry Pi for control.
+This section describes the steps to prepare the development environment for the UGV project on the Raspberry Pi, which is the base board of the robot platform, including the installation of the operating system, ROS 2 Humble, and the configuration of the Raspberry Pi for control.
 
 Operating System Installation
 -----------------------------
@@ -152,6 +152,3 @@ Image Acquisition Setup
         ros2 run rqt_image_view rqt_image_view
         # or
         rviz2
-
-This completes the environment setup for the UGV-Embrapa project. Make sure to follow these steps carefully to ensure a proper development environment.
-
