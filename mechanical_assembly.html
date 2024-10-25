@@ -41,6 +41,104 @@
             
   <div class="section" id="mechanical-assembly">
 <h1>Mechanical Assembly<a class="headerlink" href="#mechanical-assembly" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>The robot’s structure is an adaptation of unmanned vehicles that monitor the surface of Mars and the moon. It features a Rocker-Bogie suspension made of aluminum profile, developed in 1996 for NASA’s Sojourner rover. This suspension system keeps the chassis level even on uneven terrain, minimizing rolling and pitching.</p>
+<p>The suspension consists of two axles:</p>
+<ol class="arabic simple">
+<li><p>The first axle is fixed to the chassis and rotates the larger arm (rocker).</p></li>
+<li><p>The second axle is at the end of the first and rotates the smaller arm (bogie).</p></li>
+</ol>
+<p>Wires from the motors and encoders pass through these axles to the inside of the chassis.</p>
+</div>
+<div class="section" id="chassis-design">
+<h2>Chassis Design<a class="headerlink" href="#chassis-design" title="Permalink to this headline">¶</a></h2>
+<p>The robot’s chassis is composed of:</p>
+<ul class="simple">
+<li><p>Aluminum bars</p></li>
+<li><p>Acrylic sheets</p></li>
+</ul>
+<p>These components house the device’s electronic boards, batteries, and HMI. Camera and LiDAR supports are attached to the chassis.</p>
+<p>Design Considerations:</p>
+<ul class="simple">
+<li><p>The robot’s center of mass is positioned above the unsprung mass (wheels and suspension) for greater stability.</p></li>
+<li><p>Maximum incline is limited to angles less than 45° due to the height of the center of mass.</p></li>
+<li><p>Obstacles exceeding the combined torque of the six motors or with a height greater than the wheel radius cannot be overcome.</p></li>
+</ul>
+</div>
+<div class="section" id="assembly-instructions">
+<h2>Assembly Instructions<a class="headerlink" href="#assembly-instructions" title="Permalink to this headline">¶</a></h2>
+<p><strong>For detailed instructions on base assembly, including the main body frame and rocker-bogie suspension, refer to the Open Source Rover official docs:</strong> <a class="reference external" href="https://github.com/nasa-jpl/open-source-rover/tree/master/mechanical">https://github.com/nasa-jpl/open-source-rover/tree/master/mechanical</a>.</p>
+<div class="figure align-center" id="id1">
+<a class="reference internal image-reference" href="_images/base_structure.png"><img alt="Base structure" src="_images/base_structure.png" style="width: 50%;" /></a>
+<p class="caption"><span class="caption-text">Base structure.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="component-adaptations">
+<h2>Component Adaptations<a class="headerlink" href="#component-adaptations" title="Permalink to this headline">¶</a></h2>
+<p>Some parts may need adaptation based on component availability:</p>
+<div class="section" id="aluminum-profiles">
+<h3>Aluminum Profiles<a class="headerlink" href="#aluminum-profiles" title="Permalink to this headline">¶</a></h3>
+<p>If 96 mm profiles are unavailable:</p>
+<ol class="arabic simple">
+<li><p>Purchase larger profiles and cut to the correct dimension.</p></li>
+<li><p>Redo threading for M4 screws in all four holes of each cut part.</p></li>
+<li><p>Use taps of different sizes in three stages to achieve the desired thread size.</p></li>
+</ol>
+<div class="figure align-center" id="id2">
+<a class="reference internal image-reference" href="_images/aluminum_profile.png"><img alt="Aluminum profile" src="_images/aluminum_profile.png" style="width: 50%;" /></a>
+<p class="caption"><span class="caption-text">Cut aluminum profile.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id3">
+<a class="reference internal image-reference" href="_images/threading.png"><img alt="Threading" src="_images/threading.png" style="width: 50%;" /></a>
+<p class="caption"><span class="caption-text">Threading operation.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="drilling-operations">
+<h3>Drilling Operations<a class="headerlink" href="#drilling-operations" title="Permalink to this headline">¶</a></h3>
+<p>After cutting the parts, it may be necessary to drill the bars, since the existing hole may not be through like in the profile. In addition, it may also be necessary to perform threading in two stages, as was the case with the other part mentioned above.</p>
+<p>If drilling is necessary, follow these steps:</p>
+<ol class="arabic simple">
+<li><p>Paint the face to be drilled with a marker.</p></li>
+<li><p>Mark the hole center using a vertical height marker.</p></li>
+<li><p>Create a central mark using a center punch, vice, and hammer.</p></li>
+<li><p>Drill using a manual benchtop milling machine, ensuring proper alignment and chip evacuation.</p></li>
+</ol>
+<div class="figure align-center" id="id4">
+<a class="reference internal image-reference" href="_images/drilling_marking.png"><img alt="Drilling marking" src="_images/drilling_marking.png" style="width: 50%;" /></a>
+<p class="caption"><span class="caption-text">Marking for drilling operation.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="bearing-substitution">
+<h3>Bearing Substitution<a class="headerlink" href="#bearing-substitution" title="Permalink to this headline">¶</a></h3>
+<p>If the original bearing part is unavailable:</p>
+<ul class="simple">
+<li><p>Use a substitute with an equivalent internal diameter.</p></li>
+<li><p>Note that slight structural deformation may occur but should not compromise operation.</p></li>
+</ul>
+<div class="figure align-center" id="id5">
+<a class="reference internal image-reference" href="_images/substitute_bearing.png"><img alt="Substitute bearing" src="_images/substitute_bearing.png" style="width: 50%;" /></a>
+<p class="caption"><span class="caption-text">Substitute bearing.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="wheel-fixation">
+<h3>Wheel Fixation<a class="headerlink" href="#wheel-fixation" title="Permalink to this headline">¶</a></h3>
+<p>Due to the torque of the engines, it may be necessary to modify the wheel attachment.</p>
+<p>Originally, the attachment is established between the engine shaft and the wheel with a central screw pressing the wheel between a washer and the wheel hub attached to the engine shaft. After the new attachment, the wheels are drilled and attached, with two screws each, to the wheel hubs. However, it was found that this strategy, suggested in the official project repository, is prone to misalignment.</p>
+<div class="figure align-center" id="id6">
+<a class="reference internal image-reference" href="_images/wheel_fixation.png"><img alt="Wheel fixation" src="_images/wheel_fixation.png" style="width: 50%;" /></a>
+<p class="caption"><span class="caption-text">Example of attaching the wheel to the hub</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="important-note">
+<h2>Important Note<a class="headerlink" href="#important-note" title="Permalink to this headline">¶</a></h2>
+<p>As of the writing of this document, there is an error in the official documentation:</p>
+<ul class="simple">
+<li><p>Component initially coded as 1601 actually corresponds to component number 1611.</p></li>
+<li><p>The 3D assembly view shows a part with an internal diameter less than 8 mm, which does not fit the specified axle.</p></li>
+</ul>
+</div>
 </div>
 
 
@@ -50,6 +148,26 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Mechanical Assembly</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#chassis-design">Chassis Design</a></li>
+<li><a class="reference internal" href="#assembly-instructions">Assembly Instructions</a></li>
+<li><a class="reference internal" href="#component-adaptations">Component Adaptations</a><ul>
+<li><a class="reference internal" href="#aluminum-profiles">Aluminum Profiles</a></li>
+<li><a class="reference internal" href="#drilling-operations">Drilling Operations</a></li>
+<li><a class="reference internal" href="#bearing-substitution">Bearing Substitution</a></li>
+<li><a class="reference internal" href="#wheel-fixation">Wheel Fixation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#important-note">Important Note</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
   <div>
     <h4>Previous topic</h4>
     <p class="topless"><a href="overview.html"
