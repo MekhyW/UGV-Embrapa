@@ -3,8 +3,8 @@ Contributors
 
 This project was developed by a team of 8 members, under the guidance of an advisor and a mentor. Below are the details of each contributor.
 
-Team Members
-------------
+Team Members - V1
+------------------
 
 Breno Alencar Araújo
 ^^^^^^^^^^^^^^^^^^^^
@@ -49,6 +49,9 @@ Giulia Carolina Martins de Sampaio
 .. image:: _static/giulia.png
    :width: 200px
    :align: center
+
+Team Members - V2
+------------------
 
 Felipe Catapano Emrich Melo
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
