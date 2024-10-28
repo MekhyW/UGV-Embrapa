@@ -41,6 +41,196 @@
             
   <div class="section" id="schematics-and-wiring">
 <h1>Schematics and Wiring<a class="headerlink" href="#schematics-and-wiring" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+<p>The prototype’s electronics are made up of two boards: the motor drive board (Motor Board), where the power circuits are located, and the board responsible for controlling the entire system’s operation (Brain Board), where the control circuits are located and a Raspberry Pi 4, model B, 8 GB, with a 64-bit quad-core ARM-Cortex A72 microprocessor, running at 1.5 GHz, is located.</p>
+<p>The main electronics are based on the original platform schematics found at <a class="reference external" href="https://github.com/nasa-jpl/open-source-rover/blob/master/electrical/pcb/control_board/documentation/v2.0.1/schematics.pdf">https://github.com/nasa-jpl/open-source-rover/blob/master/electrical/pcb/control_board/documentation/v2.0.1/schematics.pdf</a>, and the following diagrams:</p>
+<div class="figure align-center" id="id1">
+<a class="reference internal image-reference" href="_images/electronic_boards.png"><img alt="Electronic boards" src="_images/electronic_boards.png" style="width: 80%;" /></a>
+<p class="caption"><span class="caption-text">Electronic boards.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id2">
+<a class="reference internal image-reference" href="_images/electrical_diagram.png"><img alt="Electrical diagram" src="_images/electrical_diagram.png" style="width: 80%;" /></a>
+<p class="caption"><span class="caption-text">Electrical diagram.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id3">
+<a class="reference internal image-reference" href="_images/signal_diagram.png"><img alt="Signal diagram" src="_images/signal_diagram.png" style="width: 80%;" /></a>
+<p class="caption"><span class="caption-text">Signal diagram.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="power-supply-setup">
+<h2>Power Supply Setup<a class="headerlink" href="#power-supply-setup" title="Permalink to this headline">¶</a></h2>
+<ol class="loweralpha">
+<li><p>Battery Configuration</p>
+<ul>
+<li><p>Use a 14.8V DC battery</p></li>
+<li><p>Connect through protection circuit containing:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Fuse</p></li>
+<li><p>1 kΩ resistor</p></li>
+<li><p>Protection diode</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</li>
+<li><p>Voltage Regulation System</p>
+<ul>
+<li><p>Install voltage regulators:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>14.8V → 12V (D24V22Fx) for Roboclaw drivers</p></li>
+<li><p>14.8V → 5V (D24V150Fx) for main systems</p></li>
+<li><p>5V → 3.3V (MIC2937A-3.3WT) for low-power components</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</li>
+<li><p>Power Distribution</p>
+<p>12V powers:</p>
+<ul class="simple">
+<li><p>Roboclaw motor drivers</p></li>
+</ul>
+<p>5V powers:</p>
+<ul class="simple">
+<li><p>Raspberry Pi</p></li>
+<li><p>PWM expansion module</p></li>
+<li><p>Servo motors</p></li>
+<li><p>HMI display</p></li>
+<li><p>Motor encoders</p></li>
+</ul>
+<p>3.3V powers:</p>
+<ul class="simple">
+<li><p>PWM expansion (PCA9685)</p></li>
+<li><p>INA260 monitor</p></li>
+<li><p>Status LEDs</p></li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="motor-system-installation">
+<h2>Motor System Installation<a class="headerlink" href="#motor-system-installation" title="Permalink to this headline">¶</a></h2>
+<p>There are two different types of motors being used: brushed DC motors, used to propel the system, and servos, used to change the robot’s orientation.</p>
+<p>The DC motors are the “5203 Series Yellow Jacket Planetary Gear Motor” model, manufactured by GoBilda, and have a maximum torque of 38 kg.cm. A total of 6 motors are used to move the robot, each equipped with a magnetic encoder, which performs the reading through a hall effect sensor. These readings can be monitored in a specific node, ‘roboclaw_movemotor.py’, contained in: osr-rover-code/scripts/ in the repository of only the robot codes.</p>
+<p>The servo motors used are the “Dsservo DS3225” model and have a maximum torque of 21 kg.cm with the 5 V supplied by the drive board. In total, 4 actuators of this type are required to control the robot’s orientation, enabling lateral dynamics.</p>
+<ol class="loweralpha simple">
+<li><p>DC Motors</p>
+<ul class="simple">
+<li><p>Install 6x GoBilda 5203 Series Yellow Jacket Planetary Gear Motors</p></li>
+<li><p>Specifications: 38 kg.cm maximum torque</p></li>
+<li><p>Connect magnetic encoders to each motor</p></li>
+<li><p>Wire to Roboclaw drivers</p></li>
+</ul>
+</li>
+</ol>
+<div class="figure align-center" id="id4">
+<a class="reference internal image-reference" href="_images/dc_motor.png"><img alt="DC motor" src="_images/dc_motor.png" style="width: 50%;" /></a>
+<p class="caption"><span class="caption-text">DC motor.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+<ol class="loweralpha simple" start="2">
+<li><p>Servo Motors</p>
+<ul class="simple">
+<li><p>Install 4x Dsservo DS3225</p></li>
+<li><p>Specifications: 21 kg.cm at 5V</p></li>
+<li><p>Connect to PCA9685 PWM expansion module</p></li>
+</ul>
+</li>
+</ol>
+<div class="figure align-center" id="id5">
+<a class="reference internal image-reference" href="_images/servo_motor.png"><img alt="Servo motor" src="_images/servo_motor.png" style="width: 50%;" /></a>
+<p class="caption"><span class="caption-text">Servo motor.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="control-systems-setup">
+<h2>Control Systems Setup<a class="headerlink" href="#control-systems-setup" title="Permalink to this headline">¶</a></h2>
+<p>Considering the communication between the microcomputer and the voltage and current monitoring module (INA260), it is noted that data is also sent via an I2C communication protocol. The module also communicates with the signaling LEDs to alert the user if its internal shunt resistor detects any change in the power supply system.</p>
+<ol class="loweralpha simple">
+<li><p>PWM Control</p>
+<ul class="simple">
+<li><p>Install PCA9685 module</p></li>
+<li><p>Connect to Raspberry Pi via I2C</p></li>
+<li><p>Wire 16 PWM channels as needed</p></li>
+</ul>
+</li>
+</ol>
+<p>In addition to the expansion module and the monitor, communication with the HMI display, which will be implemented in the future, will also take place using the I2C protocol. The reason for this choice is that the control board has an available I2C bus, which could be adapted for connecting the display with a low number of adaptations required.</p>
+<p>Another important observation regarding the diagram is that the Raspberry Pi is also responsible for controlling the 12V voltage regulator through an enable signal, turning the 12V output on or off.</p>
+<p>Analyzing the control board a little more, we can see the presence of some signaling LEDs. These components are intended to communicate with the user, signaling, for example, when data is being transferred via the serial port, lighting up when the bits are transferred.</p>
+<ol class="loweralpha simple" start="2">
+<li><p>Monitoring System</p>
+<ul class="simple">
+<li><p>Install INA260 module</p></li>
+<li><p>Connect via I2C to Raspberry Pi</p></li>
+<li><p>Wire status LEDs for power monitoring</p></li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="safety-systems">
+<h2>Safety Systems<a class="headerlink" href="#safety-systems" title="Permalink to this headline">¶</a></h2>
+<p>To ensure the prototype’s compliance with the occupational safety standard for machines and equipment (NR-12), it was necessary to include an emergency circuit, containing a physical emergency button and ensuring the robot’s complete stop, in addition to de-energizing the control and power boards, through a normally closed switch, responsible for cutting off the power supplied to both boards.</p>
+<ol class="loweralpha simple">
+<li><p>Emergency Circuit</p>
+<ul class="simple">
+<li><p>Install physical emergency button (NC switch)</p></li>
+<li><p>Wire to power cutoff system for both boards</p></li>
+<li><p>Configure remote emergency via radio control</p></li>
+</ul>
+</li>
+</ol>
+<div class="figure align-center" id="id6">
+<a class="reference internal image-reference" href="_images/emergency_circuit.png"><img alt="Emergency circuit" src="_images/emergency_circuit.png" style="width: 80%;" /></a>
+<p class="caption"><span class="caption-text">Emergency circuit.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</div>
+<ol class="loweralpha" start="2">
+<li><p>Status Indicators
+- Install status LEDs for:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Serial communication</p></li>
+<li><p>Power status</p></li>
+<li><p>Emergency status</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="section" id="display-installation">
+<h2>Display Installation<a class="headerlink" href="#display-installation" title="Permalink to this headline">¶</a></h2>
+<p>To display relevant information about the robot’s status, such as connectivity, battery percentage, etc., a 16x02 LCD display with an I²C conversion module was installed, as provided in the project’s solution matrix. It was necessary to supply it with 5V on one of the available power pins indicated by the brain board’s silkscreen, as well as connect the SDA and SCL pins.</p>
+<ul class="simple">
+<li><p>Install 16x02 LCD display with I²C module</p></li>
+<li><p>Connect to 5V power</p></li>
+<li><p>Wire SDA and SCL pins to Raspberry Pi</p></li>
+</ul>
+<div class="figure align-center" id="id7">
+<a class="reference internal image-reference" href="_images/display_wiring.png"><img alt="Display wiring" src="_images/display_wiring.png" style="width: 80%;" /></a>
+<p class="caption"><span class="caption-text">Display wiring.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="wiring-guidelines">
+<h2>Wiring Guidelines<a class="headerlink" href="#wiring-guidelines" title="Permalink to this headline">¶</a></h2>
+<p>The wiring required for power supply, encoder reading and signal transmission to the actuators followed the instructions in the GitHub repository at: <a class="reference external" href="https://github.com/nasa-jpl/open-source-rover/tree/master/electrical/wiring">https://github.com/nasa-jpl/open-source-rover/tree/master/electrical/wiring</a>. The suggested dimensions, however, were reduced, so an excess of at least 10 cm was added to each wire. The color code was respected as well as the gauge of the motor power wires. Wires for control signals were replaced with smaller AWG gauge two-piece.</p>
+<ul class="simple">
+<li><p>Add 10cm extra length to all specified wire lengths</p></li>
+<li><p>Follow color coding scheme</p></li>
+<li><p>Use specified AWG for motor power</p></li>
+<li><p>Use smaller AWG for control signals</p></li>
+</ul>
+</div>
+<div class="section" id="testing-and-verification">
+<h2>Testing and Verification<a class="headerlink" href="#testing-and-verification" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Test voltage levels at all regulation points</p></li>
+<li><p>Verify emergency shutdown functionality</p></li>
+<li><p>Test motor control systems</p></li>
+<li><p>Confirm encoder readings using roboclaw_movemotor.py</p></li>
+<li><p>Verify I2C communication with all peripherals</p></li>
+</ul>
+<p>Note: Always refer to the original schematics for detailed connection diagrams and component specifications.</p>
+</div>
 </div>
 
 
@@ -50,6 +240,23 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Schematics and Wiring</a><ul>
+<li><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li><a class="reference internal" href="#power-supply-setup">Power Supply Setup</a></li>
+<li><a class="reference internal" href="#motor-system-installation">Motor System Installation</a></li>
+<li><a class="reference internal" href="#control-systems-setup">Control Systems Setup</a></li>
+<li><a class="reference internal" href="#safety-systems">Safety Systems</a></li>
+<li><a class="reference internal" href="#display-installation">Display Installation</a></li>
+<li><a class="reference internal" href="#wiring-guidelines">Wiring Guidelines</a></li>
+<li><a class="reference internal" href="#testing-and-verification">Testing and Verification</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
   <div>
     <h4>Previous topic</h4>
     <p class="topless"><a href="mechanical_assembly.html"
