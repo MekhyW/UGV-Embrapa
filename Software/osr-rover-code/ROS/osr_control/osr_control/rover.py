@@ -94,6 +94,14 @@ class Rover(Node):
 
         :param intuitive: determines the mode
         """
+
+        temp = Twist()
+        temp.angular.z = -twist_msg.angular.z
+        temp.angular.y = -twist_msg.angular.y
+        temp.linear.x = -twist_msg.linear.x
+
+        twist_msg = temp
+
         # check if we're supposed to rotate in place
         if  not twist_msg.linear.x:
             # command corners to point to center
