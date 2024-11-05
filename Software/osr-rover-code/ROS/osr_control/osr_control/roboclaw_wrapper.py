@@ -161,7 +161,7 @@ class RoboclawWrapper(Node):
             self.enc_pub.publish(self.current_enc_vals)
         except AssertionError as read_exc:
             self.get_logger().warn("Failed to read encoder values")
-            self.get_logger().warn(read_exc.args)
+            #self.get_logger().warn(read_exc.args)
 
         # stop the motors if we haven't received a command in a while
         if not self.idle and (now - self.time_last_cmd > self.velocity_timeout):
