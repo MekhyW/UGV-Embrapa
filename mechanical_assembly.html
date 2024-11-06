@@ -73,6 +73,11 @@
 <a class="reference internal image-reference" href="_images/base_structure.png"><img alt="Base structure" src="_images/base_structure.png" style="width: 50%;" /></a>
 <p class="caption"><span class="caption-text">Base structure.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
+<ul class="simple">
+<li><p>Wheel assembly subsystem: <a class="reference external" href="https://github.com/nasa-jpl/open-source-rover/blob/master/mechanical/wheel_assembly/README.md">https://github.com/nasa-jpl/open-source-rover/blob/master/mechanical/wheel_assembly/README.md</a></p></li>
+<li><p>Main body subsystem: <a class="reference external" href="https://github.com/nasa-jpl/open-source-rover/blob/master/mechanical/body/README.md">https://github.com/nasa-jpl/open-source-rover/blob/master/mechanical/body/README.md</a></p></li>
+<li><p>Rocker-Bogie suspension subsystem: <a class="reference external" href="https://github.com/nasa-jpl/open-source-rover/blob/master/mechanical/rocker_bogie/README.md">https://github.com/nasa-jpl/open-source-rover/blob/master/mechanical/rocker_bogie/README.md</a></p></li>
+</ul>
 </div>
 <div class="section" id="component-adaptations">
 <h2>Component Adaptations<a class="headerlink" href="#component-adaptations" title="Permalink to this headline">¶</a></h2>
@@ -129,15 +134,37 @@
 <a class="reference internal image-reference" href="_images/wheel_fixation.png"><img alt="Wheel fixation" src="_images/wheel_fixation.png" style="width: 50%;" /></a>
 <p class="caption"><span class="caption-text">Example of attaching the wheel to the hub</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </div>
-</div>
-</div>
-<div class="section" id="important-note">
-<h2>Important Note<a class="headerlink" href="#important-note" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>As of the writing of this document, there is an error in the official documentation:</p>
 <ul class="simple">
 <li><p>Component initially coded as 1601 actually corresponds to component number 1611.</p></li>
 <li><p>The 3D assembly view shows a part with an internal diameter less than 8 mm, which does not fit the specified axle.</p></li>
 </ul>
+</div>
+</div>
+</div>
+<div class="section" id="autonomous-navigation-slam-module">
+<h2>Autonomous Navigation/SLAM Module<a class="headerlink" href="#autonomous-navigation-slam-module" title="Permalink to this headline">¶</a></h2>
+<p>To allow the robot to navigate autonomously, perform SLAM and communicate with the robot’s HMI, it is necessary to make the casing that houses the navigation module and supports for the robot’s sensors, then mount the navigation module and sensors on the case (on top of the base platform structure).</p>
+<div class="section" id="acrylic-case">
+<h3>Acrylic Case<a class="headerlink" href="#acrylic-case" title="Permalink to this headline">¶</a></h3>
+<p>Cutting files for the acrylic case, separated into walls, bottom and top, are available in the “Mechanics/Modulo autonomo” folder. The .dxf files can be opened with tools such as RDWorks or Rhino, and .prt files can be opened with tools such as Siemens NX.</p>
+<p>It is necessary to use a laser cutting machine to cut the acrylic sheets, then screw the bottom part to the base structure. The top part simply slides in place, above the case walls.</p>
+<div class="figure align-center" id="id7">
+<a class="reference internal image-reference" href="_images/optiplex_case.jpg"><img alt="Acrylic case" src="_images/optiplex_case.jpg" style="width: 33%;" /></a>
+<p class="caption"><span class="caption-text">Acrylic case.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id8">
+<a class="reference internal image-reference" href="_images/optiplex_L_screws.jpg"><img alt="L-screws" src="_images/optiplex_L_screws.jpg" style="width: 33%;" /></a>
+<p class="caption"><span class="caption-text">L-screws used to fix the bottom part to the base structure.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="cooler-fan-hole">
+<h3>Cooler Fan Hole<a class="headerlink" href="#cooler-fan-hole" title="Permalink to this headline">¶</a></h3>
+<p>A hole is required to intall the cooler fan in front of the step-up converter module, which is used to power the Optiplex board for the navigation module.
+To achieve this, a 80mm hole was drilled in the front wall of the chassis, and the fan was fixed via 4x M3 screws and nuts.</p>
+</div>
 </div>
 </div>
 
@@ -162,7 +189,11 @@
 <li><a class="reference internal" href="#wheel-fixation">Wheel Fixation</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#important-note">Important Note</a></li>
+<li><a class="reference internal" href="#autonomous-navigation-slam-module">Autonomous Navigation/SLAM Module</a><ul>
+<li><a class="reference internal" href="#acrylic-case">Acrylic Case</a></li>
+<li><a class="reference internal" href="#cooler-fan-hole">Cooler Fan Hole</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

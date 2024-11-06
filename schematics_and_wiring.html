@@ -115,6 +115,10 @@
 <p>There are two different types of motors being used: brushed DC motors, used to propel the system, and servos, used to change the robot’s orientation.</p>
 <p>The DC motors are the “5203 Series Yellow Jacket Planetary Gear Motor” model, manufactured by GoBilda, and have a maximum torque of 38 kg.cm. A total of 6 motors are used to move the robot, each equipped with a magnetic encoder, which performs the reading through a hall effect sensor. These readings can be monitored in a specific node, ‘roboclaw_movemotor.py’, contained in: osr-rover-code/scripts/ in the repository of only the robot codes.</p>
 <p>The servo motors used are the “Dsservo DS3225” model and have a maximum torque of 21 kg.cm with the 5 V supplied by the drive board. In total, 4 actuators of this type are required to control the robot’s orientation, enabling lateral dynamics.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The servo motors used do not have the same range of rotation as the ones from the original NASA design (180 instead of the original 300 degrees). This required changes to the control system to adapt to the new range.</p>
+</div>
 <ol class="loweralpha simple">
 <li><p>DC Motors</p>
 <ul class="simple">
@@ -229,7 +233,10 @@
 <li><p>Confirm encoder readings using roboclaw_movemotor.py</p></li>
 <li><p>Verify I2C communication with all peripherals</p></li>
 </ul>
-<p>Note: Always refer to the original schematics for detailed connection diagrams and component specifications.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Always refer to the original schematics for detailed connection diagrams and component specifications.</p>
+</div>
 </div>
 </div>
 

@@ -83,6 +83,9 @@ The DC motors are the “5203 Series Yellow Jacket Planetary Gear Motor” model
 
 The servo motors used are the “Dsservo DS3225” model and have a maximum torque of 21 kg.cm with the 5 V supplied by the drive board. In total, 4 actuators of this type are required to control the robot's orientation, enabling lateral dynamics.
 
+.. warning::
+   The servo motors used do not have the same range of rotation as the ones from the original NASA design (180 instead of the original 300 degrees). This required changes to the control system to adapt to the new range.
+
 a) DC Motors
    
    - Install 6x GoBilda 5203 Series Yellow Jacket Planetary Gear Motors
@@ -210,4 +213,5 @@ Testing and Verification
 
 - Verify I2C communication with all peripherals
 
-Note: Always refer to the original schematics for detailed connection diagrams and component specifications.
+.. note::
+   Always refer to the original schematics for detailed connection diagrams and component specifications.

@@ -41,6 +41,12 @@ Assembly Instructions
 
    Base structure.
 
+- Wheel assembly subsystem: https://github.com/nasa-jpl/open-source-rover/blob/master/mechanical/wheel_assembly/README.md
+
+- Main body subsystem: https://github.com/nasa-jpl/open-source-rover/blob/master/mechanical/body/README.md
+
+- Rocker-Bogie suspension subsystem: https://github.com/nasa-jpl/open-source-rover/blob/master/mechanical/rocker_bogie/README.md
+
 Component Adaptations
 ---------------------
 
@@ -117,10 +123,41 @@ Originally, the attachment is established between the engine shaft and the wheel
 
    Example of attaching the wheel to the hub
 
-Important Note
---------------
 
-As of the writing of this document, there is an error in the official documentation:
+.. note::
+   As of the writing of this document, there is an error in the official documentation:
 
-- Component initially coded as 1601 actually corresponds to component number 1611.
-- The 3D assembly view shows a part with an internal diameter less than 8 mm, which does not fit the specified axle.
+   - Component initially coded as 1601 actually corresponds to component number 1611.
+   - The 3D assembly view shows a part with an internal diameter less than 8 mm, which does not fit the specified axle.
+
+Autonomous Navigation/SLAM Module
+---------------------------------
+
+To allow the robot to navigate autonomously, perform SLAM and communicate with the robot's HMI, it is necessary to make the casing that houses the navigation module and supports for the robot's sensors, then mount the navigation module and sensors on the case (on top of the base platform structure).
+
+Acrylic Case
+^^^^^^^^^^^^^
+
+Cutting files for the acrylic case, separated into walls, bottom and top, are available in the "Mechanics/Modulo autonomo" folder. The .dxf files can be opened with tools such as RDWorks or Rhino, and .prt files can be opened with tools such as Siemens NX.
+
+It is necessary to use a laser cutting machine to cut the acrylic sheets, then screw the bottom part to the base structure. The top part simply slides in place, above the case walls.
+
+.. figure:: _static/optiplex_case.jpg
+   :alt: Acrylic case
+   :width: 33%
+   :align: center
+
+   Acrylic case.
+
+.. figure:: _static/optiplex_L_screws.jpg
+   :alt: L-screws
+   :width: 33%
+   :align: center
+
+   L-screws used to fix the bottom part to the base structure.
+
+Cooler Fan Hole
+^^^^^^^^^^^^^^^^
+
+A hole is required to intall the cooler fan in front of the step-up converter module, which is used to power the Optiplex board for the navigation module.
+To achieve this, a 80mm hole was drilled in the front wall of the chassis, and the fan was fixed via 4x M3 screws and nuts.

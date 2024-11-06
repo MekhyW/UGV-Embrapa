@@ -66,5 +66,6 @@ Operating the UGV
 7. In case of emergency, press the emergency stop button to immediately halt the UGV.
 8. When finished, use the On/Off switch to power down the UGV.
 
-Remember to always operate the UGV in a safe environment and follow all safety protocols.
+.. note::
+   Remember to always operate the UGV in a safe environment and follow all safety protocols.
 
