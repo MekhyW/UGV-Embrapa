@@ -284,10 +284,11 @@ class Rover(Node):
         """
         # TODO these are always the same, should use cache or calculate on parameter change
         corner_cmd = CommandCorner()
-        corner_cmd.left_front_pos = math.atan(self.d3/self.d1)
-        corner_cmd.left_back_pos = -corner_cmd.left_front_pos
-        corner_cmd.right_back_pos = math.atan(self.d2/self.d1)
-        corner_cmd.right_front_pos = -corner_cmd.right_back_pos
+        if twist.angular.z != 0.0:
+            corner_cmd.left_front_pos = -math.atan(self.d3/self.d1)
+            corner_cmd.left_back_pos = -corner_cmd.left_front_pos
+            corner_cmd.right_back_pos = -math.atan(self.d2/self.d1)
+            corner_cmd.right_front_pos = -corner_cmd.right_back_pos
 
         drive_cmd = CommandDrive()
         angular_vel = twist.angular.z
