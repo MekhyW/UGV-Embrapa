@@ -44,7 +44,7 @@ def generate_launch_description():
             output='screen',
             emulate_tty=True,
             respawn=True,
-            parameters=[{'centered_pulse_widths': [150,150,150,150]}]  # pulse width where the corner motors are in their default position, see rover_bringup.md.
+            parameters=[{'centered_pulse_widths': [80,100,90,80]}]  # pulse width where the corner motors are in their default position, see rover_bringup.md.
         )
     )
     ld.add_action(
@@ -72,14 +72,14 @@ def generate_launch_description():
             respawn=True,
             parameters=[
                 # {"scale_linear.x": 0.4},  # scale to apply to drive speed, in m/s: drive_motor_rpm * 2pi / 60 * wheel radius * slowdown_factor
-                {"scale_linear.x": 0.12},  # scale to apply to drive speed, in m/s: drive_motor_rpm * 2pi / 60 * wheel radius * slowdown_factor
+                {"scale_linear.x": -0.12},  # scale to apply to drive speed, in m/s: drive_motor_rpm * 2pi / 60 * wheel radius * slowdown_factor
                 # {"axis_linear.x": 4},
                 {"axis_linear.x": 1},
                 # {"axis_angular.yaw": 0},  # which joystick axis to use for driving
                 {"axis_angular.yaw": 2},  # which joystick axis to use for driving
                 # {"scale_angular.yaw": 1.25},  # scale to apply to angular speed, in rad/s: scale_linear / min_radius(=0.45m)
                 {"axis_angular.pitch": 4},  # axis to use for in-place rotation
-                {"scale_angular.yaw": 1.25},  # scale to apply to angular speed, in rad/s: scale_linear / min_radius(=0.45m)
+                {"scale_angular.yaw": -1.25},  # scale to apply to angular speed, in rad/s: scale_linear / min_radius(=0.45m)
                 {"scale_angular.pitch": 0.25},  # scale to apply to angular speed, in rad/s: scale_linear / min_radius(=0.45m)
                 {"scale_angular_turbo.yaw": 0.0},  # scale to apply to angular speed, in rad/s: scale_linear_turbo / min_radius
                 {"scale_linear_turbo.x": 0.0},  # scale to apply to linear speed, in m/s
