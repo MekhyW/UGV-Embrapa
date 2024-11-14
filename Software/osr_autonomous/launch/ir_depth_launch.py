@@ -17,7 +17,7 @@ def generate_launch_description():
     )
 
     nav2_launch_file = PythonLaunchDescriptionSource(
-        [FindPackageShare('nav2_bringup'), '/launch/bringup_launch.py']
+        [FindPackageShare('nav2_bringup'), '/launch/navigation_launch.py']
     )
 
     realsense_params_file = os.path.join(get_package_share_directory('osr_autonomous'), 'realsense_params', 'params.yaml')
@@ -56,7 +56,7 @@ def generate_launch_description():
             package='tf2_ros',
             executable='static_transform_publisher',
             name='tf_camera_link',
-            arguments=["0", "0", "0", "0", "0", "0", 'base_link', 'camera_link'],
+            arguments=["0.13", "0", "0.175", "0", "-0.52", "0", 'base_link', 'camera_link'],
         ),
         Node(
             package='imu_filter_madgwick',
@@ -74,7 +74,8 @@ def generate_launch_description():
                 'camera_info_topic': '/camera/camera/infra1/camera_info',
                 'qos': '1',
                 'namespace': '',
-                #'queue_size': '200',
+                'queue_size': '20',
+                'approx_sync': 'true',
                 'rviz': 'false',
                 'rtabmap_viz': 'false',
                 'frame_id': 'base_footprint',
