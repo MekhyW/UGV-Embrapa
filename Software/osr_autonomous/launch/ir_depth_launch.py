@@ -77,10 +77,6 @@ def generate_launch_description():
                 'output': 'none',
                 'namespace': '',
                 'queue_size': '20',
-<<<<<<< Updated upstream
-                'approx_sync': 'true',
-=======
->>>>>>> Stashed changes
                 'rviz': 'false',
                 'rtabmap_viz': 'false',
                 'approx_sync': 'true',
