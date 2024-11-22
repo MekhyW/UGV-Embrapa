@@ -73,11 +73,17 @@ def generate_launch_description():
                 'depth_topic': '/camera/camera/depth/image_rect_raw',
                 'camera_info_topic': '/camera/camera/infra1/camera_info',
                 'qos': '1',
+                'wait_for_transform': '0.3',
+                'output': 'none',
                 'namespace': '',
                 'queue_size': '20',
+<<<<<<< Updated upstream
                 'approx_sync': 'true',
+=======
+>>>>>>> Stashed changes
                 'rviz': 'false',
                 'rtabmap_viz': 'false',
+                'approx_sync': 'true',
                 'frame_id': 'base_footprint',
                 #'publish_tf_odom': 'true',
                 #'rtabmap_args': '--delete_db_on_start --Vis/MaxFeatures 1000 --Grid/3D false --Rtabmap/DetectionRate 10 --Reg/Force3DoF true --Kp/DetectorStrategy 2 --Vis/FeatureType 2',
