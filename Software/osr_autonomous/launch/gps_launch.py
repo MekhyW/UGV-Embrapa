@@ -20,6 +20,10 @@ def generate_launch_description():
         [FindPackageShare('nav2_bringup'), '/launch/navigation_launch.py']
     )
 
+    nmea_launch_file = PythonLaunchDescriptionSource(
+        [FindPackageShare('nmea_navsat_driver'), '/launch/nmea_serial_driver.launch.py']
+    )
+
     realsense_params_file = os.path.join(get_package_share_directory('osr_autonomous'), 'realsense_params', 'params.yaml')
 
     nav2_params_file = os.path.join(get_package_share_directory('osr_autonomous'), 'nav2_params', 'params.yaml')
@@ -91,6 +95,9 @@ def generate_launch_description():
             executable='gps_follower',
             name="gps_follower",
             output = "screen",
+        ),
+        IncludeLaunchDescription(
+            nmea_launch_file,
         ),
         IncludeLaunchDescription(
             rtabmap_launch_file,
