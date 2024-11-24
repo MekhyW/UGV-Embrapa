@@ -161,3 +161,15 @@ Cooler Fan Hole
 
 A hole is required to intall the cooler fan in front of the step-up converter module, which is used to power the Optiplex board for the navigation module.
 To achieve this, a 80mm hole was drilled in the front wall of the chassis, and the fan was fixed via 4x M3 screws and nuts.
+
+Sensor Mounting
+^^^^^^^^^^^^^^^^
+
+Printable files for the sensor mounting pieces (both for the RealSense D435i and the LDS02 Lidar) are available in the "Mechanics/Modulo autonomo" folder.
+
+.. figure:: _static/lidar.jpg
+   :alt: Lidar mounting
+   :width: 30%
+   :align: center
+
+   Lidar mounting.

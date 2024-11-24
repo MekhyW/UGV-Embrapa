@@ -17,10 +17,10 @@ Here you will find information about the project, how to assemble and use the ro
    overview
    mechanical_assembly
    schematics_and_wiring
-   slam_stack
    environment_setup_rpi
    remote_control
    environment_setup_optiplex
-   launch_packages
+   launch_package
    waypoint_navigation
+   cloud_architecture
    contributors

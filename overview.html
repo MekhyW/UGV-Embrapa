@@ -56,16 +56,6 @@
 <p>The human monitoring process can be difficult or even impossible depending on factors such as the size and number of plots. According to data from the Brazilian Confederation of Agriculture and Livestock (CNA), in 2021, national fruit production exceeded 41 million tons, with 81% of producing establishments being classified as family farming. According to the IBGE (Brazilian Institute of Geography and Statistics), Brazil, which is the leader in the supply of wood for the production of paper and pulp, broke a record in 2022, with 99.7 million cubic meters. The states of the Southeast lead both productions, however, only 16% of agricultural establishments are family farming in Brazil. Data that reveal the strength of the primary sector in the Brazilian economy and that large estates, concentrated in this region, have been demanding new technologies to improve productivity.</p>
 <p>Considering such demand, the development of technologies in the sector applied to the monitoring of plantations can ensure that the procedure is carried out in a more assertive and rapid manner.</p>
 </div>
-<div class="section" id="key-features">
-<h2>Key Features<a class="headerlink" href="#key-features" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Autonomous navigation in agricultural fields</p></li>
-<li><p>ROS2 Humble-based control system</p></li>
-<li><p>Remote control operation using Spektrum DXS radio transmitter</p></li>
-<li><p>Image acquisition using Intel RealSense D435i and Logitech C920 HD PRO cameras</p></li>
-<li><p>Real-time processing and monitoring capabilities</p></li>
-</ul>
-</div>
 <div class="section" id="development-environment">
 <h2>Development Environment<a class="headerlink" href="#development-environment" title="Permalink to this headline">¶</a></h2>
 <p>The project’s development environment includes:</p>
@@ -79,9 +69,11 @@
 <h2>Key Components<a class="headerlink" href="#key-components" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li><p><strong>Remote Control</strong>: Utilizes a Spektrum DXS radio control transmitter for manual operation.</p></li>
-<li><p><strong>Image Acquisition</strong>: Employs Intel RealSense D435i and Logitech C920 HD PRO cameras for capturing visual data.</p></li>
+<li><p><strong>Image Acquisition</strong>: Employs Intel RealSense D435i for capturing visual data.</p></li>
 <li><p><strong>Visualization</strong>: Uses Rviz2 for real-time monitoring and visualization of sensor data.</p></li>
 <li><p><strong>Automatic Bringup</strong>: Implements a launch script for automated startup of the rover system.</p></li>
+<li><p><strong>Autonomous Navigation</strong>: Implements a navigation stack for autonomous movement using RTAB-MAP SLAM.</p></li>
+<li><p><strong>Telemetry</strong>: Provides real-time telemetry information using ROS2 topics.</p></li>
 </ol>
 </div>
 <div class="section" id="safety-features">
@@ -95,11 +87,8 @@
 </div>
 <div class="section" id="results-and-performance">
 <h2>Results and Performance<a class="headerlink" href="#results-and-performance" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Successful real-time processing of multiple image streams</p></li>
-<li><p>Stable and reliable operation during testing</p></li>
-<li><p>Flexible system architecture allowing easy addition and modification of ROS nodes</p></li>
-</ul>
+<p>The project demonstrated promising results by successfully implementing an autonomous navigation system for a UGV designed to monitor forestry and fruit plantations. The developed system utilized a combination of sensor fusion techniques, including a depth camera (Intel Realsense D435i), a 2D LiDAR, and a GPS module with ROS 2 and the NAV 2 navigation stack. Extensive testing and optimization allowed the system to achieve robust SLAM capabilities, even in challenging unstructured environments with uneven terrain.</p>
+<p>The system demonstrated reliable waypoint navigation, map generation, and real-time telemetry. Through parameter tuning, the RTAB-MAP SLAM achieved efficient performance, balancing computational load and mapping accuracy. The final configuration ensured that odometry updates and map updates occurred at sufficient frequencies to support autonomous navigation. Hardware limitations were a challenge; however, selecting the Dell OptiPlex 7000 MFF provided the computational power necessary to meet system demands.</p>
 </div>
 <div class="section" id="future-directions">
 <h2>Future Directions<a class="headerlink" href="#future-directions" title="Permalink to this headline">¶</a></h2>
@@ -120,7 +109,6 @@
 <li><a class="reference internal" href="#">Overview</a><ul>
 <li><a class="reference internal" href="#about-embrapa-digital-agriculture">About Embrapa Digital Agriculture</a></li>
 <li><a class="reference internal" href="#why-is-this-project-important">Why is this project important?</a></li>
-<li><a class="reference internal" href="#key-features">Key Features</a></li>
 <li><a class="reference internal" href="#development-environment">Development Environment</a></li>
 <li><a class="reference internal" href="#key-components">Key Components</a></li>
 <li><a class="reference internal" href="#safety-features">Safety Features</a></li>
