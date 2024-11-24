@@ -28,15 +28,6 @@ The human monitoring process can be difficult or even impossible depending on fa
 
 Considering such demand, the development of technologies in the sector applied to the monitoring of plantations can ensure that the procedure is carried out in a more assertive and rapid manner.
 
-Key Features
-------------
-
-- Autonomous navigation in agricultural fields
-- ROS2 Humble-based control system
-- Remote control operation using Spektrum DXS radio transmitter
-- Image acquisition using Intel RealSense D435i and Logitech C920 HD PRO cameras
-- Real-time processing and monitoring capabilities
-
 Development Environment
 -----------------------
 
@@ -50,9 +41,11 @@ Key Components
 --------------
 
 1. **Remote Control**: Utilizes a Spektrum DXS radio control transmitter for manual operation.
-2. **Image Acquisition**: Employs Intel RealSense D435i and Logitech C920 HD PRO cameras for capturing visual data.
+2. **Image Acquisition**: Employs Intel RealSense D435i for capturing visual data.
 3. **Visualization**: Uses Rviz2 for real-time monitoring and visualization of sensor data.
 4. **Automatic Bringup**: Implements a launch script for automated startup of the rover system.
+5. **Autonomous Navigation**: Implements a navigation stack for autonomous movement using RTAB-MAP SLAM.
+6. **Telemetry**: Provides real-time telemetry information using ROS2 topics.
 
 Safety Features
 ---------------
@@ -66,9 +59,9 @@ The UGV includes an emergency routine for operational safety:
 Results and Performance
 -----------------------
 
-- Successful real-time processing of multiple image streams
-- Stable and reliable operation during testing
-- Flexible system architecture allowing easy addition and modification of ROS nodes
+The project demonstrated promising results by successfully implementing an autonomous navigation system for a UGV designed to monitor forestry and fruit plantations. The developed system utilized a combination of sensor fusion techniques, including a depth camera (Intel Realsense D435i), a 2D LiDAR, and a GPS module with ROS 2 and the NAV 2 navigation stack. Extensive testing and optimization allowed the system to achieve robust SLAM capabilities, even in challenging unstructured environments with uneven terrain.
+
+The system demonstrated reliable waypoint navigation, map generation, and real-time telemetry. Through parameter tuning, the RTAB-MAP SLAM achieved efficient performance, balancing computational load and mapping accuracy. The final configuration ensured that odometry updates and map updates occurred at sufficient frequencies to support autonomous navigation. Hardware limitations were a challenge; however, selecting the Dell OptiPlex 7000 MFF provided the computational power necessary to meet system demands.
 
 Future Directions
 -----------------
