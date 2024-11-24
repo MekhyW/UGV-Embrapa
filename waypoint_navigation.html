@@ -41,6 +41,121 @@
             
   <div class="section" id="waypoint-navigation">
 <h1>Waypoint Navigation<a class="headerlink" href="#waypoint-navigation" title="Permalink to this headline">¶</a></h1>
+<p>The UGV uses Nav2 for autonomous navigation with GPS waypoints. The navigation stack is configured through several parameter files that control different aspects of the navigation system.</p>
+<p>To learn more about Nav2, refer to the <a class="reference external" href="https://docs.nav2.org/">official documentation</a>.</p>
+<div class="section" id="global-route-planning">
+<h2>Global Route Planning<a class="headerlink" href="#global-route-planning" title="Permalink to this headline">¶</a></h2>
+<p>The global planner generates an optimal path from the robot’s current position to the goal. We use the SMAC Hybrid-A* planner with the following key parameters:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">planner_server</span><span class="p">:</span>
+  <span class="nt">ros__parameters</span><span class="p">:</span>
+    <span class="nt">planner_plugins</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="s">&quot;GridBased&quot;</span><span class="p p-Indicator">]</span>
+    <span class="nt">GridBased</span><span class="p">:</span>
+      <span class="nt">plugin</span><span class="p">:</span> <span class="s">&quot;nav2_smac_planner/SmacPlannerHybrid&quot;</span>
+      <span class="nt">tolerance</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.25</span>                     <span class="c1"># Goal tolerance in meters</span>
+      <span class="nt">allow_unknown</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>                 <span class="c1"># Allow planning through unknown space</span>
+      <span class="nt">max_planning_time</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5.0</span>              <span class="c1"># Maximum time allowed for planning</span>
+      <span class="nt">motion_model_for_search</span><span class="p">:</span> <span class="s">&quot;DUBIN&quot;</span>    <span class="c1"># Use Dubins car motion model</span>
+      <span class="nt">minimum_turning_radius</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.40</span>        <span class="c1"># Minimum turning radius in meters</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="local-trajectory-control">
+<h2>Local Trajectory Control<a class="headerlink" href="#local-trajectory-control" title="Permalink to this headline">¶</a></h2>
+<p>For local trajectory control, multiple controller options are available:</p>
+<div class="section" id="regulated-pure-pursuit-rpp">
+<h3>Regulated Pure Pursuit (RPP)<a class="headerlink" href="#regulated-pure-pursuit-rpp" title="Permalink to this headline">¶</a></h3>
+<p>The RPP controller provides smooth path following with obstacle avoidance:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">controller_server</span><span class="p">:</span>
+  <span class="nt">ros__parameters</span><span class="p">:</span>
+    <span class="nt">controller_plugins</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="s">&quot;FollowPath&quot;</span><span class="p p-Indicator">]</span>
+    <span class="nt">FollowPath</span><span class="p">:</span>
+      <span class="nt">plugin</span><span class="p">:</span> <span class="s">&quot;nav2_regulated_pure_pursuit_controller::RegulatedPurePursuitController&quot;</span>
+      <span class="nt">desired_linear_vel</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.5</span>             <span class="c1"># Maximum forward velocity</span>
+      <span class="nt">lookahead_dist</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.6</span>                 <span class="c1"># Base lookahead distance</span>
+      <span class="nt">min_lookahead_dist</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.3</span>             <span class="c1"># Minimum lookahead distance</span>
+      <span class="nt">max_lookahead_dist</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.9</span>             <span class="c1"># Maximum lookahead distance</span>
+      <span class="nt">use_velocity_scaled_lookahead_dist</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+      <span class="nt">use_collision_detection</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>        <span class="c1"># Enable collision checking</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="vector-pursuit">
+<h3>Vector Pursuit<a class="headerlink" href="#vector-pursuit" title="Permalink to this headline">¶</a></h3>
+<p>The Vector Pursuit controller offers an alternative approach:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">controller_server</span><span class="p">:</span>
+  <span class="nt">ros__parameters</span><span class="p">:</span>
+    <span class="nt">controller_plugins</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="s">&quot;FollowPath&quot;</span><span class="p p-Indicator">]</span>
+    <span class="nt">FollowPath</span><span class="p">:</span>
+      <span class="nt">plugin</span><span class="p">:</span> <span class="s">&quot;vector_pursuit_controller::VectorPursuitController&quot;</span>
+      <span class="nt">desired_linear_vel</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.5</span>             <span class="c1"># Maximum forward velocity</span>
+      <span class="nt">min_turning_radius</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.25</span>            <span class="c1"># Minimum turning radius</span>
+      <span class="nt">lookahead_dist</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.0</span>                 <span class="c1"># Base lookahead distance</span>
+      <span class="nt">use_collision_detection</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>        <span class="c1"># Enable collision checking</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="behavior-server">
+<h2>Behavior Server<a class="headerlink" href="#behavior-server" title="Permalink to this headline">¶</a></h2>
+<p>The behavior server manages recovery behaviors when the robot encounters difficulties:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">behavior_server</span><span class="p">:</span>
+  <span class="nt">ros__parameters</span><span class="p">:</span>
+    <span class="nt">behavior_plugins</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="s">&quot;spin&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;backup&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;drive_on_heading&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;wait&quot;</span><span class="p p-Indicator">]</span>
+    <span class="nt">spin</span><span class="p">:</span>
+      <span class="nt">plugin</span><span class="p">:</span> <span class="s">&quot;nav2_behaviors/Spin&quot;</span>       <span class="c1"># Rotate in place</span>
+    <span class="nt">backup</span><span class="p">:</span>
+      <span class="nt">plugin</span><span class="p">:</span> <span class="s">&quot;nav2_behaviors/BackUp&quot;</span>     <span class="c1"># Move backwards</span>
+    <span class="nt">drive_on_heading</span><span class="p">:</span>
+      <span class="nt">plugin</span><span class="p">:</span> <span class="s">&quot;nav2_behaviors/DriveOnHeading&quot;</span>  <span class="c1"># Drive straight</span>
+    <span class="nt">wait</span><span class="p">:</span>
+      <span class="nt">plugin</span><span class="p">:</span> <span class="s">&quot;nav2_behaviors/Wait&quot;</span>       <span class="c1"># Wait in place</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="costmap-configuration">
+<h2>Costmap Configuration<a class="headerlink" href="#costmap-configuration" title="Permalink to this headline">¶</a></h2>
+<p>Both global and local costmaps are configured to handle obstacles:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">local_costmap</span><span class="p">:</span>
+  <span class="nt">local_costmap</span><span class="p">:</span>
+    <span class="nt">ros__parameters</span><span class="p">:</span>
+      <span class="nt">update_frequency</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5.0</span>
+      <span class="nt">publish_frequency</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2.0</span>
+      <span class="nt">width</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>                            <span class="c1"># Local costmap width in meters</span>
+      <span class="nt">height</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>                           <span class="c1"># Local costmap height in meters</span>
+      <span class="nt">resolution</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.05</span>                    <span class="c1"># Resolution in meters/cell</span>
+      <span class="nt">robot_radius</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.18</span>                  <span class="c1"># Robot radius for collision checking</span>
+
+<span class="nt">global_costmap</span><span class="p">:</span>
+  <span class="nt">global_costmap</span><span class="p">:</span>
+    <span class="nt">ros__parameters</span><span class="p">:</span>
+      <span class="nt">update_frequency</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.0</span>
+      <span class="nt">publish_frequency</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.0</span>
+      <span class="nt">resolution</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.05</span>                    <span class="c1"># Resolution in meters/cell</span>
+      <span class="nt">track_unknown_space</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>           <span class="c1"># Track unknown areas</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="gps-integration">
+<h2>GPS Integration<a class="headerlink" href="#gps-integration" title="Permalink to this headline">¶</a></h2>
+<p>To allow the robot to navigate through coordinates in the WGS84 reference frame, a Quectel L-80 M39 GPS (GPS3 Click module) with a TTL-USB adapter is used.</p>
+<p>The GPS waypoints are processed through a dedicated node (<code class="docutils literal notranslate"><span class="pre">osr_autonomous/gps_follower.py</span></code>) that converts GPS coordinates to map coordinates (using UTM projection) and sends them to Nav2’s waypoint follower:</p>
+<div class="figure align-center" id="id1">
+<a class="reference internal image-reference" href="_images/gps.jpg"><img alt="GPS module" src="_images/gps.jpg" style="width: 30%;" /></a>
+<p class="caption"><span class="caption-text">GPS module.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">waypoint_follower</span><span class="p">:</span>
+  <span class="nt">ros__parameters</span><span class="p">:</span>
+    <span class="nt">loop_rate</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">20</span>
+    <span class="nt">stop_on_failure</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+    <span class="nt">waypoint_task_executor_plugin</span><span class="p">:</span> <span class="s">&quot;wait_at_waypoint&quot;</span>
+    <span class="nt">wait_at_waypoint</span><span class="p">:</span>
+      <span class="nt">plugin</span><span class="p">:</span> <span class="s">&quot;nav2_waypoint_follower::WaitAtWaypoint&quot;</span>
+      <span class="nt">enabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+      <span class="nt">waypoint_pause_duration</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">200</span>        <span class="c1"># Time to wait at each waypoint (ms)</span>
+</pre></div>
+</div>
+<p>The GPS interface node subscribes to waypoints published in GPS coordinates and transforms them to the map frame before sending them to Nav2 for execution.</p>
+</div>
 </div>
 
 
@@ -50,6 +165,24 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Waypoint Navigation</a><ul>
+<li><a class="reference internal" href="#global-route-planning">Global Route Planning</a></li>
+<li><a class="reference internal" href="#local-trajectory-control">Local Trajectory Control</a><ul>
+<li><a class="reference internal" href="#regulated-pure-pursuit-rpp">Regulated Pure Pursuit (RPP)</a></li>
+<li><a class="reference internal" href="#vector-pursuit">Vector Pursuit</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#behavior-server">Behavior Server</a></li>
+<li><a class="reference internal" href="#costmap-configuration">Costmap Configuration</a></li>
+<li><a class="reference internal" href="#gps-integration">GPS Integration</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
   <div>
     <h4>Previous topic</h4>
     <p class="topless"><a href="launch_package.html"
