@@ -102,6 +102,18 @@ Key Features:
    - Configurable output directory for recorded bags
    - Useful for development and debugging
 
+lidar_launch.py
+^^^^^^^^^^^^^^^
+
+Similar to gps_launch.py but with LiDAR integration for improved mapping and navigation (complete stack without bag recording).
+
+Key Features:
+
+   - Includes all functionality from gps_launch.py
+   - Adds LiDAR data integration
+   - Improved mapping and navigation capabilities
+   - No ROS bag recording
+
 rtab_imu_launch.py
 ^^^^^^^^^^^^^^^^^^
 

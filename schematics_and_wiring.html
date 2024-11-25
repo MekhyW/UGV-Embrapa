@@ -224,6 +224,93 @@
 <li><p>Use smaller AWG for control signals</p></li>
 </ul>
 </div>
+<div class="section" id="dell-optiplex-power-supply">
+<h2>Dell Optiplex Power Supply<a class="headerlink" href="#dell-optiplex-power-supply" title="Permalink to this headline">¶</a></h2>
+<p>In order to use the Optiplex 7000MFF, a power supply circuit responsible for adjusting the battery voltage from 14.8V to the computer’s input voltage of 19.5V is necessary.</p>
+<p>This is accomplished using a step-up voltage regulator, which takes advantage of the available components on the motherboard and the power supply circuit, and is installed after the fuse and multimeter.</p>
+<div class="figure align-center" id="id8">
+<a class="reference internal image-reference" href="_images/stepup.png"><img alt="Diagram of the step-up voltage regulator" src="_images/stepup.png" style="width: 80%;" /></a>
+<p class="caption"><span class="caption-text">Diagram of the step-up voltage regulator.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+</div>
+<p>The regulator module can potentially reach dangerous temperatures if not properly isolated from the surrounding components and cooled. In order to test the power regulator for efficiency and thermal performance, the following test circuit can be used:</p>
+<div class="figure align-center" id="id9">
+<a class="reference internal image-reference" href="_images/stepup_test.png"><img alt="Test circuit for the power regulator" src="_images/stepup_test.png" style="width: 80%;" /></a>
+<p class="caption"><span class="caption-text">Test circuit for the power regulator.</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="gps-module-board">
+<h2>GPS Module Board<a class="headerlink" href="#gps-module-board" title="Permalink to this headline">¶</a></h2>
+<p>The GPS module board integrates a NEO-6M GPS module with a TTL to USB converter. The board can be manufactured using the provided KiCad design files located in the Electronics/GPS directory.</p>
+<ol class="loweralpha simple">
+<li><p>Manufacturing Files</p></li>
+</ol>
+<blockquote>
+<div><p>The following files are required for PCB fabrication:</p>
+<ul class="simple">
+<li><p>Circuit design: GPS.kicad_sch</p></li>
+<li><p>PCB layout: GPS.kicad_pcb</p></li>
+<li><dl class="simple">
+<dt>Drill files:</dt><dd><ul>
+<li><p>FabOutput/Gerber/GPS-NPTH.drl (Non-plated holes)</p></li>
+<li><p>FabOutput/Gerber/GPS-PTH.drl (Plated holes)</p></li>
+<li><p>FabOutput/Drill/GPS-NPTH.drl (Non-plated holes backup)</p></li>
+<li><p>FabOutput/Drill/GPS-PTH.drl (Plated holes backup)</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<ol class="loweralpha simple" start="2">
+<li><p>Manufacturing Specifications</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>Board material: FR4</p></li>
+<li><p>Layers: 2</p></li>
+<li><p>Thickness: 1.6mm</p></li>
+<li><p>Copper weight: 1oz</p></li>
+<li><p>Surface finish: HASL (lead-free)</p></li>
+<li><p>Solder mask: Green</p></li>
+<li><p>Silkscreen: White</p></li>
+</ul>
+</div></blockquote>
+<ol class="loweralpha simple" start="3">
+<li><p>Assembly Instructions</p></li>
+</ol>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Order PCB fabrication using provided Gerber and drill files</p></li>
+<li><dl class="simple">
+<dt>Solder components in the following order:</dt><dd><ul class="simple">
+<li><p>TTL to USB converter</p></li>
+<li><p>Power regulation components</p></li>
+<li><p>GPS module socket</p></li>
+<li><p>Pin headers</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>Install GPS module into socket</p></li>
+<li><p>Verify all connections with multimeter before powering</p></li>
+</ol>
+</div></blockquote>
+<ol class="loweralpha simple" start="4">
+<li><p>Testing</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>Check voltage levels at power test points</p></li>
+<li><p>Verify USB enumeration when connected</p></li>
+<li><p>Test GPS signal acquisition in open area</p></li>
+<li><p>Confirm serial communication at 9600 baud</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The board design includes protection circuitry and proper power regulation for reliable operation.</p>
+</div>
+</div>
 <div class="section" id="testing-and-verification">
 <h2>Testing and Verification<a class="headerlink" href="#testing-and-verification" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
@@ -258,6 +345,8 @@
 <li><a class="reference internal" href="#safety-systems">Safety Systems</a></li>
 <li><a class="reference internal" href="#display-installation">Display Installation</a></li>
 <li><a class="reference internal" href="#wiring-guidelines">Wiring Guidelines</a></li>
+<li><a class="reference internal" href="#dell-optiplex-power-supply">Dell Optiplex Power Supply</a></li>
+<li><a class="reference internal" href="#gps-module-board">GPS Module Board</a></li>
 <li><a class="reference internal" href="#testing-and-verification">Testing and Verification</a></li>
 </ul>
 </li>
