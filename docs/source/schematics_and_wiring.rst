@@ -201,6 +201,77 @@ The wiring required for power supply, encoder reading and signal transmission to
 
 - Use smaller AWG for control signals
 
+Dell Optiplex Power Supply
+--------------------------
+
+In order to use the Optiplex 7000MFF, a power supply circuit responsible for adjusting the battery voltage from 14.8V to the computer's input voltage of 19.5V is necessary. 
+
+This is accomplished using a step-up voltage regulator, which takes advantage of the available components on the motherboard and the power supply circuit, and is installed after the fuse and multimeter.
+
+.. figure:: _static/stepup.png
+   :alt: Diagram of the step-up voltage regulator
+   :width: 80%
+   :align: center
+
+   Diagram of the step-up voltage regulator.
+
+The regulator module can potentially reach dangerous temperatures if not properly isolated from the surrounding components and cooled. In order to test the power regulator for efficiency and thermal performance, the following test circuit can be used:
+
+.. figure:: _static/stepup_test.png
+   :alt: Test circuit for the power regulator
+   :width: 80%
+   :align: center
+
+   Test circuit for the power regulator.
+
+GPS Module Board
+------------------
+
+The GPS module board integrates a NEO-6M GPS module with a TTL to USB converter. The board can be manufactured using the provided KiCad design files located in the Electronics/GPS directory.
+
+a) Manufacturing Files
+  
+  The following files are required for PCB fabrication:
+  
+  - Circuit design: GPS.kicad_sch
+  - PCB layout: GPS.kicad_pcb
+  - Drill files:
+       * FabOutput/Gerber/GPS-NPTH.drl (Non-plated holes)
+       * FabOutput/Gerber/GPS-PTH.drl (Plated holes)
+       * FabOutput/Drill/GPS-NPTH.drl (Non-plated holes backup)
+       * FabOutput/Drill/GPS-PTH.drl (Plated holes backup)
+
+b) Manufacturing Specifications
+  
+  - Board material: FR4
+  - Layers: 2
+  - Thickness: 1.6mm
+  - Copper weight: 1oz
+  - Surface finish: HASL (lead-free)
+  - Solder mask: Green
+  - Silkscreen: White
+
+c) Assembly Instructions
+  
+  1. Order PCB fabrication using provided Gerber and drill files
+  2. Solder components in the following order:
+       * TTL to USB converter
+       * Power regulation components
+       * GPS module socket
+       * Pin headers
+  3. Install GPS module into socket
+  4. Verify all connections with multimeter before powering
+
+d) Testing
+  
+  - Check voltage levels at power test points
+  - Verify USB enumeration when connected
+  - Test GPS signal acquisition in open area
+  - Confirm serial communication at 9600 baud
+
+.. note::
+  The board design includes protection circuitry and proper power regulation for reliable operation.
+
 Testing and Verification
 ------------------------
 - Test voltage levels at all regulation points
